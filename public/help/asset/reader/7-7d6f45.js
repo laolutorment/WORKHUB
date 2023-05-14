@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_topwrite_reader=self.webpackChunk_topwrite_reader||[]).push([[7],{2007:e=>{e.exports=JSON.parse('{"4R5GEq":"Home","IHXx7d":"Powered By {link}","fTNnxP":"BackTop","n24ytq":"Untitled"}')}}]);

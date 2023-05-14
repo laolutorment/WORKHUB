@@ -1,0 +1,81 @@
+{__NOLAYOUT__}
+<!-- {__NOLAYOUT__}为不使用框架的开关代码，本页为ZTX-011，增加数据库导入导出功能导出功能页面 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {include file="public/base_css_js" /}
+    <!--折腾侠修改标签页图标为动态自定义-->
+    <!-- ※折腾侠：修改后台页面标题为动态标题，可自定义 -->
+    <title>{$system['backstage_name']|default='SIYUCMS'} | 控制台</title>
+</head>
+
+<body>
+    <form target="_blank" name="form-builder" class="col-12 form_builder" id="form-builder" method="post"
+        action="/admin/Database/exportPost.html">
+        <input type="hidden" name="table_name" value="{$table_name}">
+        <div class="row">
+            <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label " for="col">选择字段</label>
+            <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                        <th class="text-center" >
+                        
+                            字段
+                        
+                        </th>
+                        <th class="text-center">
+                            格式转换
+                       
+                        </th>
+                    </tr>
+                        {foreach $columns_checkbox as $k=>$v}
+                        <tr>
+                            <td class="text-left"><label>
+                                    <input type="checkbox" name="col[]" value="{$k}"
+                                        checked="checked"><span>{$v}</span></label></td><td> <select  id="{$k}" name="{$k}">
+                                            <option value=""></option>
+                                            <option value="datetime">转成时间格式</option>
+                                            </select>
+                                        </td>
+
+                        </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label "></label>
+            <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
+                <input type="checkbox" id='all_chose' name="all" class="dd_radio"
+                    checked="checked"><span>全选</span></label></td>
+
+
+            </div>
+        </div>
+
+    </form>
+</body>
+
+<script>
+    //全选和全不选的设置
+    //当全选的checkbox发生变化时
+    $("#all_chose").change(function () {
+        //判断全选的checkbox的状态
+        if ($("#all_chose").is(':checked')) {
+            //当全选的checkbox为选中状态时，其余复选框设置为选中
+            $('#form-builder').find("input[type='checkbox']").prop("checked", "true");
+        }
+        else {
+            //当全选的checkbox为未选中状态时，其余复选框设置为不选
+            $('#form-builder').find("input[type='checkbox']").prop("checked", false);
+        }
+    });
+</script>
+
+</html>
