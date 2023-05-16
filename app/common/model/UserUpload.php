@@ -49,7 +49,7 @@ class UserUpload extends Base
  return $this->belongsTo('Auth', 'field_r');  
  }
  // ZTX-增加模块的表格模板关联设置
-// ZTX-增加模块的表格模板关联设置 
+
  public function field()
  { 
  return $this->belongsTo('Field', 'field_r');  

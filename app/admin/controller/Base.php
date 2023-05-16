@@ -619,7 +619,7 @@ abstract class Base
     }
 
 
-    //ZTX-003多图查看 by 折腾侠
+    //ZTX-003多图查看 by WORKHUB
     public function images_info(string $id, string $field)
     {
         $model = '\app\common\model\\' . $this->modelName;

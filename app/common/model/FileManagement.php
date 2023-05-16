@@ -31,7 +31,7 @@ class FileManagement extends Base
     protected $createTime = 'create_time';
     protected $updateTime = 'update_time';
 
-    // 删除ZTX-005折腾侠
+    // 删除ZTX-005WORKHUB
     public static function del($id)
     {
         try {
@@ -44,7 +44,7 @@ class FileManagement extends Base
             return json(['error' => 1, 'msg' => $e->getMessage()]);
         }
     } 
-    // 批量删除ZTX-005折腾侠
+    // 批量删除ZTX-005WORKHUB
     public static function selectDel($id)
     {
         if ($id) {
@@ -64,7 +64,7 @@ class FileManagement extends Base
 	
 	
 	/**
-     * ZTX-005折腾侠：增加从服务器上删除对应文件的操作
+     * ZTX-005WORKHUB：增加从服务器上删除对应文件的操作
 	 * 通用ajax删除服务器文件
      * @param string    $file      文件路径
      */

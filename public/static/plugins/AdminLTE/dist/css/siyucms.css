@@ -144,10 +144,10 @@ label{margin-bottom: 0;}
 /* 列表图片鼠标跟随 */
 .js_show_img{ cursor: pointer; color: #333}
 .js_show_img:hover{ color: #3c8dbc}
-/* 设置图片预览样式，支持多图预览  by 折腾侠 */
+/* 设置图片预览样式，支持多图预览  by WORKHUB */
 #zoomView{ position: absolute; display: none;max-width:613px;min-width:200px; background-color:#eee;border: 6px solid #eee;border-radius: 4px;box-shadow: 0 7px 20px rgba(0, 0, 0, .5);}
 .zoomView_img{ border:3px solid #eee; width:200px;height:150px;}
-/* 设置图片预览样式，支持多图预览  by 折腾侠 */
+/* 设置图片预览样式，支持多图预览  by WORKHUB */
 /* 原代码#zoomView{ position: absolute; display: none; border: 6px solid #eee; max-width: 500px; max-height: 500px;border-radius: 4px;box-shadow: 0 7px 20px rgba(0, 0, 0, .5);} */
 
 /* 面包导航 */
@@ -185,9 +185,9 @@ label{margin-bottom: 0;}
 .text-sm .changeSort{line-height: 21px;height: 21px;font-size: .8125rem}
 /* 列表图片缩略图 */
 .image_preview, .image_preview_info{float: left;margin-right: 5px; /*max-width: 100px;*/max-height: 38px;}
-/* ZTX-003增加多图显示的缩略图样式 by 折腾侠 */
+/* ZTX-003增加多图显示的缩略图样式 by WORKHUB */
 .images_preview, .images_preview_info{float: left;margin-right: 5px; /*max-width: 100px;*/max-height: 38px;}
-/* ZTX-003增加多图显示的缩略图样式 by 折腾侠 */
+/* ZTX-003增加多图显示的缩略图样式 by WORKHUB */
 .btn-secondary{background-color: #f4f4f4;color: #444;border-color: #ddd;}
 /* 列表间距 */
 .select-table{padding: .3rem 1rem;}

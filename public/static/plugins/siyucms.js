@@ -52,7 +52,7 @@ $(document).on('mouseout', '.image_preview', function (e) {
     }
 })
 
-// ZTX-003多图列表图片鼠标移上跟随效果（兼容ajax分页）by折腾侠
+// ZTX-003多图列表图片鼠标移上跟随效果（兼容ajax分页）byWORKHUB
 $(document).on('mouseover', '.images_preview', function (e) {
     var image = $(this).next().text();
 	
@@ -66,7 +66,7 @@ $(document).on('mouseover', '.images_preview', function (e) {
                 var scr_vlaue=obj.small;
             }
 
-			image_str=image_str+'<img src="' + scr_vlaue + '" class="zoomView_img" />';// 增加class="zoomView_img"样式，便于多图样式统一 by折腾侠
+			image_str=image_str+'<img src="' + scr_vlaue + '" class="zoomView_img" />';// 增加class="zoomView_img"样式，便于多图样式统一 byWORKHUB
 			
 		});
 		image_str=image_str+'</div>';
@@ -90,7 +90,7 @@ $(document).on('mouseout', '.images_preview', function (e) {
     }
 })
 
-//ZTX-003 多图列表图片鼠标移上跟随效果（兼容ajax分页）by折腾侠
+//ZTX-003 多图列表图片鼠标移上跟随效果（兼容ajax分页）byWORKHUB
 
 // 常规表单提交转变成ajax
 $(document).on("submit", 'form:not([pjax-off])', function () {
@@ -114,12 +114,12 @@ $(document).on("click", '.juanzeng', function () {
 })
 
 
-//多图删除，// ZTX-002折腾侠：增加从服务器上删除对应文件的操作,删除原代码
-  /*折腾侠：原代码：
+//多图删除，// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作,删除原代码
+  /*WORKHUB：原代码：
 	var remove = $(this).parent().parent().parent();
   remove.remove();
     */ 
-	// ZTX-002折腾侠：增加从服务器上删除对应文件的操作	
+	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 
 	
 

@@ -10,7 +10,7 @@
                 </div>
                 {notempty name="form[type].value"}
                 {volist name="form[type]['value']" id="vo"}
-                <!-- ZTX-002  by 折腾侠删除原有代码，改为跟图片显示容器一样的代码-->
+                <!-- ZTX-002  by WORKHUB删除原有代码，改为跟图片显示容器一样的代码-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-6">
                         <input type="text" name="{$form[type].name}[]" value="{$vo['image']}" class="form-control">
@@ -34,12 +34,12 @@
                     </div>
 					 </div>
 					
-				<!-- ZTX-002  by 折腾侠 删除原有代码，改为跟图片显示容器一样的代码-->
+				<!-- ZTX-002  by WORKHUB 删除原有代码，改为跟图片显示容器一样的代码-->
                 {/volist}
                 {/notempty}
             </div>
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="file" name="site_file_choose" value="" placeholder="从站内选择文件，输入搜索关键词" >
@@ -54,7 +54,7 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
     </div>
     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
         <!--上传图片-->

@@ -32,12 +32,12 @@
         {/if}
     </style>
     <script>
-	//ZTX-003前端把转义符转为普通字符 by折腾侠
+	//ZTX-003前端把转义符转为普通字符 byWORKHUB
 	function escape2Html(str) {
 	var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
 	return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
 	}
-	//ZTX-003前端把转义符转为普通字符 by折腾侠
+	//ZTX-003前端把转义符转为普通字符 byWORKHUB
         $(function() {
             var options = {
                 uniqueId      : "{$unique_id}",         // 表格主键名称，（默认为id，如表主键不为id必须设置主键）
@@ -200,7 +200,7 @@
 										}
 									}
 									{/case}
-									//ZTX-003增加多图字段的处理 by折腾侠
+									//ZTX-003增加多图字段的处理 byWORKHUB
 									{case images }
 									formatter: function(value, row, index,field) {
 										if ($.common.isNotEmpty(value)&&value!='[]') {
@@ -218,7 +218,7 @@
 										}
 									}
 									{/case}
-									//ZTX-003增加多图字段的处理 by折腾侠
+									//ZTX-003增加多图字段的处理 byWORKHUB
 									
 									
                                     {case color }

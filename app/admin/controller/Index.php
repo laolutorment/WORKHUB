@@ -255,7 +255,7 @@ class Index extends Base
 
 
     /**
-     * ZTX-002折腾侠：增加从服务器上删除对应文件的操作
+     * ZTX-002WORKHUB：增加从服务器上删除对应文件的操作
      * 通用ajax删除服务器文件
      * @param string    $file      文件路径
      */
@@ -291,7 +291,7 @@ class Index extends Base
     }
 
     /**
-     * ZTX-005折腾侠：增加从站内文件选择
+     * ZTX-005WORKHUB：增加从站内文件选择
      * 通用ajax删除服务器文件
      * @param string    $where      查询条件
      */
@@ -305,7 +305,7 @@ class Index extends Base
     }
 
     /**
-     * ZTX-005折腾侠：增加从站内文件选择
+     * ZTX-005WORKHUB：增加从站内文件选择
      * 通用ajax删除服务器文件
      * @param string    $key      查询关键字
      */

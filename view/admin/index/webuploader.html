@@ -30,7 +30,7 @@
         var GUID = WebUploader.Base.guid();                            // 一个GUID
 		
         var uploader = WebUploader.create({
-		// ZTX-002折腾侠：增加从服务器上删除对应文件的操作,并开启允许重复上传
+		// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作,并开启允许重复上传
 			duplicate :true,
             auto: true,                                                // 选完文件后，是否自动上传。
             swf: '/static/plugins/webuploader-0.1.5/uploader.swf',     // 加载swf文件，路径一定要对
@@ -75,7 +75,7 @@
             }
             var url = response.url;
             if (more == true) {
-			// <!-- ZTX-004 设置图片预览   by 折腾侠 -->
+			// <!-- ZTX-004 设置图片预览   by WORKHUB -->
 			
 			if(type=='img'){
 			
@@ -113,7 +113,7 @@
                 var images_list = $('#more_images_' + image).html();
 
                 $('#more_images_' + image).html(images + images_list);
-				// <!--ZTX-004  设置图片预览   by 折腾侠 -->
+				// <!--ZTX-004  设置图片预览   by WORKHUB -->
 	
 				
             } else {
@@ -124,12 +124,12 @@
             }
         });
         uploader.on('uploadComplete', function (file) {
-        //   <!-- ZTX-001-折腾侠：当多个文件上传完成后，原代码把“.progress”元素设置成隐藏，导致第二个文件上传以后的进度条无法显示。 -->
+        //   <!-- ZTX-001-WORKHUB：当多个文件上传完成后，原代码把“.progress”元素设置成隐藏，导致第二个文件上传以后的进度条无法显示。 -->
 			// <!-- 原代码：$list.find('.progress').fadeOut();  -->
 			
             $list.find('.progress').remove();
 			
-			//  <!-- ZTX-001折腾侠：上传完成后，把“.progress”元素直接删除，下一个文件上传时就会显示进度条。 -->
+			//  <!-- ZTX-001WORKHUB：上传完成后，把“.progress”元素直接删除，下一个文件上传时就会显示进度条。 -->
 			
         });
         // 错误提示

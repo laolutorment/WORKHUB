@@ -1,9 +1,9 @@
 <div class="row dd_input_group no-gutters {$form[type].extra_class|default=''}" id="form_group_{$form[type].name}">
-<!-- ZTX-004  by 折腾侠-->
+<!-- ZTX-004  by WORKHUB-->
     <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label {notempty name="form[type].required"}is-required{/notempty}" for="{$form[type].name}">{$form[type].title|htmlspecialchars}</label>
 	
 	<div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-4" >
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
         <div class="more_images dd_ts">
             <input type="hidden" name="upload_type" value="image">
             <div id="more_images_{$form[type].name}">
@@ -16,7 +16,7 @@
                 </div>
                 {notempty name="form[type].value"}
                 {volist name="form[type]['value']" id="vo"}
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-4">
                         <input type="text" name="{$form[type].name}[]" value="{$vo['image']}" class="form-control">
@@ -44,14 +44,14 @@
 					
 					 <div class="col-4 col-sm-2"><a href="{$vo['image']}" target="_blank"> <img class="image_preview_info" src="{$vo['small']?:$vo['image']}"  ></a></div>
                 </div>
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 {/volist}
                 {/notempty}
             </div>
 			
 			
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="img" name="site_img_choose" value="" placeholder="从站内选择图片，输入搜索关键词" >
@@ -66,11 +66,11 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
     </div>
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
         <!--上传图片-->
         <!--用来存放item-->
         <div id="fileList_{$form[type].name}" class="uploader-list"></div>
