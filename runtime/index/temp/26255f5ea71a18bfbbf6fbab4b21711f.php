@@ -1,11 +1,11 @@
-<?php /*a:26:{s:49:"./template/default/index_form_builder/layout.html";i:1683255177;s:54:"./template/default/index_form_builder/items/group.html";i:1682437533;s:53:"./template/default/index_form_builder/items/text.html";i:1682524208;s:57:"./template/default/index_form_builder/items/textarea.html";i:1682524579;s:54:"./template/default/index_form_builder/items/radio.html";i:1682524536;s:57:"./template/default/index_form_builder/items/checkbox.html";i:1682524298;s:53:"./template/default/index_form_builder/items/date.html";i:1682524360;s:53:"./template/default/index_form_builder/items/time.html";i:1682524611;s:57:"./template/default/index_form_builder/items/datetime.html";i:1682524378;s:58:"./template/default/index_form_builder/items/daterange.html";i:1642750854;s:53:"./template/default/index_form_builder/items/tags.html";i:1642750854;s:55:"./template/default/index_form_builder/items/number.html";i:1682524495;s:57:"./template/default/index_form_builder/items/password.html";i:1682524515;s:55:"./template/default/index_form_builder/items/select.html";i:1642750854;s:56:"./template/default/index_form_builder/items/select2.html";i:1682524549;s:56:"./template/default/index_form_builder/items/linkage.html";i:1682524462;s:54:"./template/default/index_form_builder/items/image.html";i:1682524042;s:55:"./template/default/index_form_builder/items/images.html";i:1682523956;s:53:"./template/default/index_form_builder/items/file.html";i:1682524086;s:54:"./template/default/index_form_builder/items/files.html";i:1682524074;s:55:"./template/default/index_form_builder/items/editor.html";i:1682524402;s:55:"./template/default/index_form_builder/items/button.html";i:1642750854;s:55:"./template/default/index_form_builder/items/hidden.html";i:1642750854;s:53:"./template/default/index_form_builder/items/html.html";i:1642750854;s:54:"./template/default/index_form_builder/items/color.html";i:1682524342;s:53:"./template/default/index_form_builder/items/code.html";i:1682524323;}*/ ?>
+<?php /*a:26:{s:49:"./template/default/index_form_builder/layout.html";i:1684228893;s:54:"./template/default/index_form_builder/items/group.html";i:1684206657;s:53:"./template/default/index_form_builder/items/text.html";i:1684206657;s:57:"./template/default/index_form_builder/items/textarea.html";i:1684206657;s:54:"./template/default/index_form_builder/items/radio.html";i:1684206657;s:57:"./template/default/index_form_builder/items/checkbox.html";i:1684206657;s:53:"./template/default/index_form_builder/items/date.html";i:1684206657;s:53:"./template/default/index_form_builder/items/time.html";i:1684206657;s:57:"./template/default/index_form_builder/items/datetime.html";i:1684206657;s:58:"./template/default/index_form_builder/items/daterange.html";i:1684206657;s:53:"./template/default/index_form_builder/items/tags.html";i:1684206657;s:55:"./template/default/index_form_builder/items/number.html";i:1684206657;s:57:"./template/default/index_form_builder/items/password.html";i:1684206657;s:55:"./template/default/index_form_builder/items/select.html";i:1684206657;s:56:"./template/default/index_form_builder/items/select2.html";i:1684206657;s:56:"./template/default/index_form_builder/items/linkage.html";i:1684206657;s:54:"./template/default/index_form_builder/items/image.html";i:1684206657;s:55:"./template/default/index_form_builder/items/images.html";i:1684228896;s:53:"./template/default/index_form_builder/items/file.html";i:1684206657;s:54:"./template/default/index_form_builder/items/files.html";i:1684228895;s:55:"./template/default/index_form_builder/items/editor.html";i:1684206657;s:55:"./template/default/index_form_builder/items/button.html";i:1684206657;s:55:"./template/default/index_form_builder/items/hidden.html";i:1684206657;s:53:"./template/default/index_form_builder/items/html.html";i:1684206657;s:54:"./template/default/index_form_builder/items/color.html";i:1684206657;s:53:"./template/default/index_form_builder/items/code.html";i:1684206657;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo htmlentities($system['label_logo']); ?>" /> <!--折腾侠修改标签页图标为动态自定义--> 
-	<!-- ※折腾侠：修改后台页面标题为动态标题，可自定义 -->
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo htmlentities($system['label_logo']); ?>" /> <!--WORKHUB修改标签页图标为动态自定义--> 
+	<!-- ※WORKHUB：修改后台页面标题为动态标题，可自定义 -->
     <title><?php echo htmlentities((isset($system['backstage_name']) && ($system['backstage_name'] !== '')?$system['backstage_name']:'SIYUCMS')); ?> | <?php echo $page_title; ?></title>
 
   <!-- layui -->
@@ -71,7 +71,7 @@
         var GUID = WebUploader.Base.guid();                            // 一个GUID
 		
         var uploader = WebUploader.create({
-		// ZTX-002折腾侠：增加从服务器上删除对应文件的操作,并开启允许重复上传
+		// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作,并开启允许重复上传
 			duplicate :true,
             auto: true,                                                // 选完文件后，是否自动上传。
             swf: '/static/plugins/webuploader-0.1.5/uploader.swf',     // 加载swf文件，路径一定要对
@@ -116,7 +116,7 @@
             }
             var url = response.url;
             if (more == true) {
-			// <!-- ZTX-004 设置图片预览   by 折腾侠 -->
+			// <!-- ZTX-004 设置图片预览   by WORKHUB -->
 			
 			if(type=='img'){
 			
@@ -154,7 +154,7 @@
                 var images_list = $('#more_images_' + image).html();
 
                 $('#more_images_' + image).html(images + images_list);
-				// <!--ZTX-004  设置图片预览   by 折腾侠 -->
+				// <!--ZTX-004  设置图片预览   by WORKHUB -->
 	
 				
             } else {
@@ -165,12 +165,12 @@
             }
         });
         uploader.on('uploadComplete', function (file) {
-        //   <!-- ZTX-001-折腾侠：当多个文件上传完成后，原代码把“.progress”元素设置成隐藏，导致第二个文件上传以后的进度条无法显示。 -->
+        //   <!-- ZTX-001-WORKHUB：当多个文件上传完成后，原代码把“.progress”元素设置成隐藏，导致第二个文件上传以后的进度条无法显示。 -->
 			// <!-- 原代码：$list.find('.progress').fadeOut();  -->
 			
             $list.find('.progress').remove();
 			
-			//  <!-- ZTX-001折腾侠：上传完成后，把“.progress”元素直接删除，下一个文件上传时就会显示进度条。 -->
+			//  <!-- ZTX-001WORKHUB：上传完成后，把“.progress”元素直接删除，下一个文件上传时就会显示进度条。 -->
 			
         });
         // 错误提示
@@ -751,11 +751,11 @@
             <?php break; case "images": ?>
                 
                 <div class="row dd_input_group no-gutters <?php echo htmlentities((isset($form_group['extra_class']) && ($form_group['extra_class'] !== '')?$form_group['extra_class']:'')); ?>" id="form_group_<?php echo htmlentities($form_group['name']); ?>">
-<!-- ZTX-004  by 折腾侠-->
+<!-- ZTX-004  by WORKHUB-->
     <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label <?php if(!(empty($form_group['required']) || (($form_group['required'] instanceof \think\Collection || $form_group['required'] instanceof \think\Paginator ) && $form_group['required']->isEmpty()))): ?>is-required<?php endif; ?>" for="<?php echo htmlentities($form_group['name']); ?>"><?php echo htmlentities(htmlspecialchars($form_group['title'])); ?></label>
 	
 	<div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-4" >
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
         <div class="more_images dd_ts">
             <input type="hidden" name="upload_type" value="image">
             <div id="more_images_<?php echo htmlentities($form_group['name']); ?>">
@@ -767,7 +767,7 @@
                     <!-- ZTX-增加缩略图显示 -->
                 </div>
                 <?php if(!(empty($form_group['value']) || (($form_group['value'] instanceof \think\Collection || $form_group['value'] instanceof \think\Paginator ) && $form_group['value']->isEmpty()))): if(is_array($form_group['value']) || $form_group['value'] instanceof \think\Collection || $form_group['value'] instanceof \think\Paginator): $i = 0; $__LIST__ = $form_group['value'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-4">
                         <input type="text" name="<?php echo htmlentities($form_group['name']); ?>[]" value="<?php echo htmlentities($vo['image']); ?>" class="form-control">
@@ -795,14 +795,14 @@
 					
 					 <div class="col-4 col-sm-2"><a href="<?php echo htmlentities($vo['image']); ?>" target="_blank"> <img class="image_preview_info" src="<?php echo !empty($vo['small']) ? htmlentities($vo['small']) : htmlentities($vo['image']); ?>"  ></a></div>
                 </div>
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 <?php endforeach; endif; else: echo "" ;endif; ?>
                 <?php endif; ?>
             </div>
 			
 			
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="img" name="site_img_choose" value="" placeholder="从站内选择图片，输入搜索关键词" >
@@ -817,9 +817,9 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
         <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
-            <!-- ZTX-004  by 折腾侠-->
+            <!-- ZTX-004  by WORKHUB-->
                 <!--上传图片-->
                 <!--用来存放item-->
                 <div id="fileList_<?php echo htmlentities($form_group['name']); ?>" class="uploader-list"></div>
@@ -828,7 +828,7 @@
               
             </div>
     </div>
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
    
 </div>
 <script type="text/javascript">
@@ -874,7 +874,7 @@
                     <input type="text" name="<?php echo htmlentities($form_group['name']); ?>_title[]" value="">
                 </div>
                 <?php if(!(empty($form_group['value']) || (($form_group['value'] instanceof \think\Collection || $form_group['value'] instanceof \think\Paginator ) && $form_group['value']->isEmpty()))): if(is_array($form_group['value']) || $form_group['value'] instanceof \think\Collection || $form_group['value'] instanceof \think\Paginator): $i = 0; $__LIST__ = $form_group['value'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <!-- ZTX-002  by 折腾侠删除原有代码，改为跟图片显示容器一样的代码-->
+                <!-- ZTX-002  by WORKHUB删除原有代码，改为跟图片显示容器一样的代码-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-6">
                         <input type="text" name="<?php echo htmlentities($form_group['name']); ?>[]" value="<?php echo htmlentities($vo['image']); ?>" class="form-control">
@@ -898,12 +898,12 @@
                     </div>
 					 </div>
 					
-				<!-- ZTX-002  by 折腾侠 删除原有代码，改为跟图片显示容器一样的代码-->
+				<!-- ZTX-002  by WORKHUB 删除原有代码，改为跟图片显示容器一样的代码-->
                 <?php endforeach; endif; else: echo "" ;endif; ?>
                 <?php endif; ?>
             </div>
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="file" name="site_file_choose" value="" placeholder="从站内选择文件，输入搜索关键词" >
@@ -918,7 +918,7 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
     </div>
     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
         <!--上传图片-->
@@ -1468,11 +1468,11 @@
                         <?php break; case "images": ?>
                             
                             <div class="row dd_input_group no-gutters <?php echo htmlentities((isset($form['extra_class']) && ($form['extra_class'] !== '')?$form['extra_class']:'')); ?>" id="form_group_<?php echo htmlentities($form['name']); ?>">
-<!-- ZTX-004  by 折腾侠-->
+<!-- ZTX-004  by WORKHUB-->
     <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label <?php if(!(empty($form['required']) || (($form['required'] instanceof \think\Collection || $form['required'] instanceof \think\Paginator ) && $form['required']->isEmpty()))): ?>is-required<?php endif; ?>" for="<?php echo htmlentities($form['name']); ?>"><?php echo htmlentities(htmlspecialchars($form['title'])); ?></label>
 	
 	<div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-4" >
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
         <div class="more_images dd_ts">
             <input type="hidden" name="upload_type" value="image">
             <div id="more_images_<?php echo htmlentities($form['name']); ?>">
@@ -1484,7 +1484,7 @@
                     <!-- ZTX-增加缩略图显示 -->
                 </div>
                 <?php if(!(empty($form['value']) || (($form['value'] instanceof \think\Collection || $form['value'] instanceof \think\Paginator ) && $form['value']->isEmpty()))): if(is_array($form['value']) || $form['value'] instanceof \think\Collection || $form['value'] instanceof \think\Paginator): $i = 0; $__LIST__ = $form['value'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-4">
                         <input type="text" name="<?php echo htmlentities($form['name']); ?>[]" value="<?php echo htmlentities($vo['image']); ?>" class="form-control">
@@ -1512,14 +1512,14 @@
 					
 					 <div class="col-4 col-sm-2"><a href="<?php echo htmlentities($vo['image']); ?>" target="_blank"> <img class="image_preview_info" src="<?php echo !empty($vo['small']) ? htmlentities($vo['small']) : htmlentities($vo['image']); ?>"  ></a></div>
                 </div>
-				<!-- ZTX-004  by 折腾侠-->
+				<!-- ZTX-004  by WORKHUB-->
                 <?php endforeach; endif; else: echo "" ;endif; ?>
                 <?php endif; ?>
             </div>
 			
 			
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="img" name="site_img_choose" value="" placeholder="从站内选择图片，输入搜索关键词" >
@@ -1534,9 +1534,9 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
         <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
-            <!-- ZTX-004  by 折腾侠-->
+            <!-- ZTX-004  by WORKHUB-->
                 <!--上传图片-->
                 <!--用来存放item-->
                 <div id="fileList_<?php echo htmlentities($form['name']); ?>" class="uploader-list"></div>
@@ -1545,7 +1545,7 @@
               
             </div>
     </div>
-	<!-- ZTX-004  by 折腾侠-->
+	<!-- ZTX-004  by WORKHUB-->
    
 </div>
 <script type="text/javascript">
@@ -1591,7 +1591,7 @@
                     <input type="text" name="<?php echo htmlentities($form['name']); ?>_title[]" value="">
                 </div>
                 <?php if(!(empty($form['value']) || (($form['value'] instanceof \think\Collection || $form['value'] instanceof \think\Paginator ) && $form['value']->isEmpty()))): if(is_array($form['value']) || $form['value'] instanceof \think\Collection || $form['value'] instanceof \think\Paginator): $i = 0; $__LIST__ = $form['value'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <!-- ZTX-002  by 折腾侠删除原有代码，改为跟图片显示容器一样的代码-->
+                <!-- ZTX-002  by WORKHUB删除原有代码，改为跟图片显示容器一样的代码-->
                 <div class="row no-gutters">
                     <div class="col-4 col-sm-6">
                         <input type="text" name="<?php echo htmlentities($form['name']); ?>[]" value="<?php echo htmlentities($vo['image']); ?>" class="form-control">
@@ -1615,12 +1615,12 @@
                     </div>
 					 </div>
 					
-				<!-- ZTX-002  by 折腾侠 删除原有代码，改为跟图片显示容器一样的代码-->
+				<!-- ZTX-002  by WORKHUB 删除原有代码，改为跟图片显示容器一样的代码-->
                 <?php endforeach; endif; else: echo "" ;endif; ?>
                 <?php endif; ?>
             </div>
         </div>
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
 			<input class="form-control" type="text" id="file" name="site_file_choose" value="" placeholder="从站内选择文件，输入搜索关键词" >
@@ -1635,7 +1635,7 @@
 		</div>
 		
 		
-		<!-- ZTX-005  by 折腾侠-->
+		<!-- ZTX-005  by WORKHUB-->
     </div>
     <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-7 dd_ts dd_ts_img">
         <!--上传图片-->
@@ -1869,7 +1869,7 @@
 	
 	
 	
-	// ZTX-002折腾侠：增加从服务器上删除对应文件的操作	
+	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 	$(document).on('click', '.remove_images', function () {
     var file = $(this).parent().parent().parent().find(":first-child").val();
     var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
@@ -1914,8 +1914,8 @@
 	//第二个按钮运行的函数
 		// 仅删除标签
 		remove.remove();
-	});// 折腾侠：增加从服务器上删除对应文件的操作
-  // ZTX-002折腾侠：增加从服务器上删除对应文件的操作	
+	});// WORKHUB：增加从服务器上删除对应文件的操作
+  // ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 })
 
 // ZTX-选择图标
