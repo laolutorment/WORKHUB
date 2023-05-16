@@ -1,0 +1,365 @@
+<!--内容开始-->
+<section class="content">
+    {// 额外CSS代码 }
+    {$extra_css|raw|default=''}
+    <div class="container-fluid">
+        <div class="row">
+            {// 额外HTML代码 }
+            {$extra_html_content_top|raw|default=''}
+            <!--顶部提示开始-->
+            {notempty name="page_tips_top"}
+            <div class="col-12 alert alert-{$tips_type} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <p>{$page_tips_top|raw}</p>
+            </div>
+            {/notempty}
+            <!--顶部提示结束-->
+            {if $layer == false}
+            {if isset($page_tips_search) OR $show_all}
+            <div class="col-12 callout search">
+                <form action="" data-pjax-other>
+                    {notempty name="page_tips_search"}{$page_tips_search|raw}{/notempty}
+                    {if $show_all}
+                    <a class="btn btn-flat btn-primary" href="{:url('index')}"><i class="fa fa-list-ul m-r-10"></i>查看全部</a>
+                    {/if}
+                    <a class="btn btn-flat btn-success f_r" onclick="javascript :history.back(-1)"><i class="fa fa-undo m-r-10"></i>返 回</a>
+                </form>
+            </div>
+            {/if}
+            {/if}
+            <!--数据表开始-->
+            <form name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
+                <!---->
+                {if $form_items}
+                    <!---->
+                    {volist name="form_items" id="form"}
+                    {switch form.type}
+                        {case value="group"}
+                            {// 分组 }
+                            {include file="form_builder/items/group" type='' /}
+                        {/case}
+                        {case text}
+                            {// 单行文本框 }
+                            {include file="form_builder/items/text" type='' /}
+                        {/case}
+                        {case value="textarea"}
+                            {// 多行文本框 }
+                            {include file="form_builder/items/textarea" type='' /}
+                        {/case}
+                        {case value="radio"}
+                            {// 单选 }
+                            {include file="form_builder/items/radio" type='' /}
+                        {/case}
+                        {case value="checkbox"}
+                            {// 多选 }
+                            {include file="form_builder/items/checkbox" type='' /}
+                        {/case}
+                        {case value="date"}
+                            {// 日期 }
+                            {include file="form_builder/items/date" type='' /}
+                        {/case}
+                        {case value="time"}
+                            {// 时间 }
+                            {include file="form_builder/items/time" type='' /}
+                        {/case}
+                        {case value="datetime"}
+                            {// 日期时间 }
+                            {include file="form_builder/items/datetime" type='' /}
+                        {/case}
+                        {case value="daterange"}
+                            {// 日期范围 }
+                            {include file="form_builder/items/daterange" type='' /}
+                        {/case}
+                        {case value="tags"}
+                            {// 标签 }
+                            {include file="form_builder/items/tags" type='' /}
+                        {/case}
+                        {case value="number"}
+                            {// 数字 }
+                            {include file="form_builder/items/number" type='' /}
+                        {/case}
+                        {case value="password"}
+                            {// 密码 }
+                            {include file="form_builder/items/password" type='' /}
+                        {/case}
+                        {case value="select"}
+                            {// 下拉菜单 }
+                            {include file="form_builder/items/select" type='' /}
+                        {/case}
+                        {case value="select2"}
+                            {// 下拉菜单2 }
+                            {include file="form_builder/items/select2" type='' /}
+                        {/case}
+                        {case value="image"}
+                            {// 单图片 }
+                            {include file="form_builder/items/image" type='' /}
+                        {/case}
+                        {case value="images"}
+                            {// 多图片 }
+                            {include file="form_builder/items/images" type='' /}
+                        {/case}
+                        {case value="file"}
+                            {// 单文件 }
+                            {include file="form_builder/items/file" type='' /}
+                        {/case}
+                        {case value="files"}
+                            {// 多文件 }
+                            {include file="form_builder/items/files" type='' /}
+                        {/case}
+                        {case value="editor"}
+                            {// 编辑器 }
+                            {include file="form_builder/items/editor" type='' /}
+                        {/case}
+                        {case value="button"}
+                            {// 按钮 }
+                            {include file="form_builder/items/button" type='' /}
+                        {/case}
+                        {case value="hidden"}
+                            {// 隐藏域 }
+                            {include file="form_builder/items/hidden" type='' /}
+                        {/case}
+                        {case value="html"}
+                            {// 自定义html }
+                            {include file="form_builder/items/html" type='' /}
+                        {/case}
+                        {case value="color"}
+                            {// 取色器 }
+                            {include file="form_builder/items/color" type='' /}
+                        {/case}
+                        {case value="code"}
+                            {// 代码编辑器 }
+                            {include file="form_builder/items/code" type='' /}
+                        {/case}
+                        {case value="linkage"}
+                            {// 多级联动 }
+                            {include file="form_builder/items/linkage" type='' /}
+                        {/case}
+
+                        {default /}
+
+                    {/switch}
+                    {/volist}
+                    <!---->
+                    <div class="row dd_input_group form-builder-submit no-gutters">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11 offset-sm-2 offset-md-2 offset-lg-2 offset-xl-1">
+                            {php}if(isset($btn_hide) && !in_array('submit', $btn_hide)):{/php}
+                            <button type="submit" class="btn btn-flat btn-primary {if $layer == true}hide{/if}">{$btn_title['submit']|default='提 交'}</button>
+                            {php}endif;{/php}
+                            {php}if(isset($btn_hide) && !in_array('back', $btn_hide)):{/php}
+                            <button type="button" class="btn btn-flat btn-default {if $layer == true}hide{/if}" onclick="javascript :history.back(-1)">{$btn_title['back']|default='返 回'}</button>
+                            {php}endif;{/php}
+                            {// 额外按钮}
+                            {foreach $btn_extra as $key=>$vo }
+                            {$vo|raw|default=''}
+                            {/foreach}
+                        </div>
+                    </div>
+                    <!-- /.box -->
+                {else /}
+                    <div class="box box-body">
+                        {$empty_tips|raw}
+                    </div>
+                    <!-- /.box -->
+                {/if}
+            </form>
+            <!--底部提示-->
+            {notempty name="page_tips_bottom"}
+            <div class="col-12 alert alert-{$tips_type} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <p>{$page_tips_bottom|raw}</p>
+            </div>
+            {/notempty}
+            {// 额外HTML代码 }
+            {$extra_html_content_bottom|raw|default=''}
+            {// 额外JS代码 }
+            {$extra_js|raw|default=''}
+			
+	<script>
+	
+	$( function() {
+        var text_value = $('#field_r').val();
+
+    })
+	
+	
+	
+	
+	// ZTX-002折腾侠：增加从服务器上删除对应文件的操作	
+	$(document).on('click', '.remove_images', function () {
+    var file = $(this).parent().parent().parent().find(":first-child").val();
+    var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
+    var remove = $(this).parent().parent().parent();
+	layer.confirm("是否删除原文件",{
+	icon: 3,
+    title: "系统提示",
+    btn: ['是', '否']
+	}, function (index) {
+	//第一个按钮运行的函数，传递index（当前层）参数
+		// 删除服务器上的文件
+		if (file=='') {
+				remove.remove();
+            }
+			else{
+			 $.ajax({
+                    type: "POST",
+                    url: "/admin/Index/file_del",
+                    data:{file:file,file_type:file_type},
+                    dataType: "json",
+                    success: function(data){
+					 switch (data) {
+                    case ("1"):
+                       console.log('删除成功');
+					   remove.remove();
+                        break;
+                    case ("0"):
+                        console.log('文件不存在');
+						remove.remove();
+                        break;
+                    case ("2"):
+                      console.log('删除失败');
+                        break;
+						default:
+						console.log('删除失败,原因不明');
+                        break;
+								 }}
+                    });
+			}
+	layer.close(index);
+	}, function(){
+	//第二个按钮运行的函数
+		// 仅删除标签
+		remove.remove();
+	});// 折腾侠：增加从服务器上删除对应文件的操作
+  // ZTX-002折腾侠：增加从服务器上删除对应文件的操作	
+})
+
+// ZTX-选择图标
+$( function() {
+
+    if($('[icon]').length >0 ){
+        $( '[icon]' ).autocomplete({
+	
+    source:function(request, response){
+     $.ajax({
+                  type: "POST",
+                  url: "/admin/Index/autocomplete_icon",
+                  data:{key:request.term},
+                  dataType: "json",
+                  success: function(data){
+                  
+                      response(data);
+                  }
+              });
+    },
+    select: function (event, ui) {    // 下拉框选中事件
+          
+        $(this).val( ui.item.code);
+        return false;
+      }
+  }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                  return $( "<li>" )
+                      .append( '<div class="mb-2"> <i class="'+item.code+'"></i> <span class="align-middle">'+item.code+'  '+item.name+'</span> </div>')
+                      .appendTo( ul );
+                      };
+
+    }
+//ZTX-005从站内选择图片
+if($( '[name="site_img_choose"]' ).length >0 ){
+
+
+    $( '[name="site_img_choose"]' ).autocomplete({
+	
+      source:function(request, response){
+	   $.ajax({
+                    type: "POST",
+                    url: "/admin/Index/autocomplete_file",
+                    data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%img%']]},
+                    dataType: "json",
+                    success: function(data){
+					
+                        response(data);
+                    }
+                });
+	  },
+	  select: function (event, ui) {    // 下拉框选中事件
+            
+		 var images = '' +
+                    '<div class="row no-gutters">' +
+                    '   <div class="col-4 col-sm-4"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
+                    '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
+                    '   <div class="col-4 col-sm-3">' +
+                    '       <div class="btn-group">' +
+                    '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
+                    '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
+                    '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
+                    '       </div>' +
+                    '   </div>' +
+					'   <div class="col-4 col-sm-2"><a href="'+ ui.item.link +'" target="_blank"> <img class="images_preview_info" src="'+ ui.item.link +'"  ></a></div>'+
+					
+					
+                    '</div>';
+                var images_list = $('#more_images_images').html();
+
+                $('#more_images_images').html(images + images_list);
+            return false;
+        }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                    return $( "<li>" )
+                        .append( '<div><img  width="100" height="100" src="'+item.link+'"><a>' + item.name + '</a></div>')
+                        .appendTo( ul );
+						};}
+						
+						//站内文件选择
+	if($( '[name="site_file_choose"]' ).length >0 ){
+	 $( '[name="site_file_choose"]' ).autocomplete({
+	
+      source:function(request, response){
+	   $.ajax({
+                    type: "POST",
+                    url: "/admin/Index/autocomplete_file",
+                    data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%file%']]},
+                    dataType: "json",
+                    success: function(data){
+					
+                        response(data);
+                    }
+                });
+	  },
+	  select: function (event, ui) {    // 下拉框选中事件
+            
+		 var images = '' +
+                    '<div class="row no-gutters">' +
+                    '   <div class="col-4 col-sm-6"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
+                    '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
+                    '   <div class="col-4 col-sm-3">' +
+                    '       <div class="btn-group">' +
+                    '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
+                    '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
+                    '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
+                    '       </div>' +
+                    '   </div>' +
+					
+					
+					
+                    '</div>';
+                var images_list = $('#more_images_files_test').html();
+
+                $('#more_images_files_test').html(images + images_list);
+            return false;
+        }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                    return $( "<li>" )
+                        .append( '<div>' + item.name + '</a></div>')
+                        .appendTo( ul );
+						}
+  } });
+  
+  
+  </script>
+			
+			
+        </div>
+    </div>
+</div>
+
+<!--内容结束-->

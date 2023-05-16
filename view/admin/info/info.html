@@ -1,0 +1,120 @@
+<!--内容开始-->
+<section class="content">
+    <style>
+        .ztx-center {
+                padding: 9px 10px;
+                    }
+                </style>
+    
+    <div class="container-fluid">
+        <div class="row">
+           
+          
+            <form name="form-builder" class="col-12 form_builder" } >
+                <!---->
+                {if $form_items}
+                   
+                    <!-- 字段循环输出 -->
+                    {volist name="form_items" id="form_group"}
+                    <div class="row dd_input_group no-gutters  id=" form_group_{$form_group.name}">
+                        <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label  for="
+                            {$form_group.name}">{$form_group.title??''}</label>
+                        <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
+                            <div class="more_images dd_ts ztx-center">
+                                {switch name="form_group.type"}
+
+                                {case value="image"}
+                                {// 单图片 }
+                                <a href="{$form_group.value ?: '/static/admin/images/nopic.png'}" target="_blank">
+                                    <img width="100%" src="{$form_group.value ?: '/static/admin/images/nopic.png'}"
+                                        id="{$form_group.name}_preview">
+                                </a>
+                                {/case}
+
+                                {case value="images"}
+                                {// 多图片 }
+                                {notempty name="form_group.value"}
+                                {volist name="form_group['value']" id="vo"}
+                                <a href="{$vo['image']}" target="_blank"> <img style="border:5px solid #fcf9f9"
+                                        src="{$vo['small']?:$vo['image']}" width="49%"></a>
+                                {/volist}
+                                {/notempty}
+                                {/case}
+
+                                {case value="file"}
+                                {// 单文件 }
+                                <a href="{$form_group.value}" target="_blank">
+                                    <p id="{$form_group.name}" class="text-primary">下载</p>
+                                </a>
+
+                                <script>
+                                    //ZTX-js方式获取url文件名
+                                    $(function () {
+                                        
+                                        var p_value = getfilename(' {$form_group.value|raw} ');
+                                        console.log(p_value);
+                                        $('#{$form_group.name}').text(p_value);
+                                    });
+
+                                </script>
+                                {/case}
+
+
+                                {case value="files"}
+                                {notempty name="form_group.value"}
+                                {volist name="form_group['value']" id="vo"}
+
+                                <a href="{$vo['image']}" target="_blank">
+                                    <p class="text-primary">{$vo['title']}</p>
+                                </a>
+
+                                {/volist}
+                                {/notempty}
+                                {/case}
+
+                                {case value="color"}
+                                {// 取色器 }
+                                <div style="background-color:{$form_group.value|raw};">
+                                    {$form_group.value|raw}
+                                </div>
+                                {/case}
+                                {default /}
+                                <font color="black">{$form_group.value|raw} </font>
+                                {/switch}
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    {/volist}
+                    <!---->
+                   
+                    <!-- /.box -->
+                {else /}
+                    <div class="box box-body">
+                        {$empty_tips|raw}
+                    </div>
+                    <!-- /.box -->
+                {/if}
+            </form>
+            <!--底部提示-->
+            
+	<script>
+        //ZTX-js方式获取url文件名
+        function getfilename(url){
+            var arr = url.split('/'); //通过/分隔字符串，成字符串数组
+            console.log(arr);
+            var fileName = arr[arr.length-1]; 
+            return fileName;
+        }
+	
+  </script>
+			
+			
+        </div>
+    </div>
+</div>
+
+<!--内容结束-->
