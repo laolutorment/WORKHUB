@@ -1,0 +1,909 @@
+[2023-04-13T23:47:19+08:00][sql] CONNECT:[ UseTime:0.000788s ] mysql:host=127.0.0.1;port=3306;dbname=ztx;charset=utf8mb4
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_auth_rule` [ RunTime:0.009958s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `status` = 1 ORDER BY `sort` ASC [ RunTime:0.000810s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.000781s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.000352s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.000519s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_module` [ RunTime:0.009061s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000528s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_cate` [ RunTime:0.005854s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_cate` ORDER BY `sort`,`id` DESC [ RunTime:0.000555s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `id` IN (18,19,21,22,23,24,25) [ RunTime:0.000568s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000642s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'cate' LIMIT 1 [ RunTime:0.000452s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_field` [ RunTime:0.007068s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000781s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_system` [ RunTime:0.007658s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_system` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000835s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `auth_open` = 0 [ RunTime:0.000660s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` [ RunTime:0.000740s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.000746s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.000367s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.000447s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_admin_log` [ RunTime:0.006365s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_admin_log` WHERE  `admin_id` = 1 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.000460s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000329s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000360s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000610s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_dictionary` [ RunTime:0.008064s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000475s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000395s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000861s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000636s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.000657s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000341s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000290s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000479s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000309s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000291s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000552s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.001095s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000799s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000655s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000402s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.000642s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000339s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000277s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000377s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000549s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000723s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000436s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000316s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000355s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 [ RunTime:0.000907s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_article` [ RunTime:0.007308s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT COUNT(*) AS think_count FROM `tp_article` `Article` LIMIT 1 [ RunTime:0.000424s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_article` `Article` ORDER BY `id` DESC LIMIT 10,10 [ RunTime:0.000454s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_cate` WHERE  `id` = 5 [ RunTime:0.000355s ]
+[2023-04-13T23:47:19+08:00][sql] SHOW FULL COLUMNS FROM `tp_users_type` [ RunTime:0.005688s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_users_type` WHERE  `id` = 0 [ RunTime:0.000403s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000883s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000443s ]
+[2023-04-13T23:47:19+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000723s ]
+[2023-04-13T23:47:19+08:00][info] array (
+  'total' => 17,
+  'per_page' => 10,
+  'current_page' => 2,
+  'last_page' => 2,
+  'data' => 
+  array (
+    0 => 
+    array (
+      'id' => 7,
+      'create_time' => '2020-02-07 13:27:11',
+      'update_time' => '2020-02-07 13:27:11',
+      'sort' => 50,
+      'status' => 1,
+      'cate_id' => 5,
+      'title' => 'Linux环境安装',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>这一个章节是本书中永远不会写的一个章节，很多人被一些市面上的书籍误导，认为学习PHP前要学习Linux。结果，一看Linux，就对人生和学习失去了希望。我们作为有过10年以上开发经验和内部训经验的专业人士告戒各位：</p>
+
+<p>Linux学习与PHP学习没有必然的联系，这是两个不同的知识体系。</p>
+
+<p>作为有多年开发经验和教学经验的我们。</p>
+
+<p>我们强烈不建议没有接触过Linux的学生，为了学习PHP而去安装Linux环境</p>
+
+<p>如果您有经验，我们相信你一定能解决，如果解决不了。</p>
+
+<p>请加QQ群和访问官网：PHP中文网&nbsp;学习视频和提问。</p>
+',
+      'summary' => '这一个章节是本书中永远不会写的一个章节，很多人被一些市面上的书籍误导，认为学习PHP前要学习Linux。结果，一看Linux，就对人生和学习失去了希望。我们作为有过10年以上开发经验和内部训经验的专业人士告戒各位：',
+      'image' => '/uploads/20181224/5cd61fb68c8bc8fe6d24be4229ec0ca5.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '开发环境',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    1 => 
+    array (
+      'id' => 6,
+      'create_time' => '2020-02-07 13:26:19',
+      'update_time' => '2020-02-07 13:26:19',
+      'sort' => 50,
+      'status' => 1,
+      'cate_id' => 5,
+      'title' => 'windows环境安装',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>所谓服务器：不要把它想的太过于高深，不过就是提供一项特殊功能（服务）的电脑而已。</p>
+
+<p>显示网页的叫网页(web)服务器（server）。</p>
+
+<p>帮我们代为收发电子邮件(Email)的服务器叫邮件服务器。</p>
+
+<p>帮我们把各个游戏玩家连接在一起的叫游戏服务器。</p>
+
+<p>帮我们存储数据的叫数据库服务器</p>
+
+<p>... ...等等</p>
+
+<p>我们现在使用的一部手机的性能比10年前的一台电脑和服务器的性能还要强劲、给力。</p>
+
+<p>而我们的学习过程当中完全可以把自己使用的这一台windows电脑作为服务器来使用。</p>
+
+<p>原来如此，一讲就通了吧？</p>
+
+<p>我们大多数人使用的电脑通常是windows操作系统的电脑。而我们的讲解主要在windows电脑上进行。</p>
+
+<p>你不需要去理解所谓高深的电脑知识、操作系统原型等。在这一章节当中，你只需要会安装QQ、杀毒软件一样，点击：下一步、下一步即可完成本章的学习。</p>
+
+<p>在最开始学习时，我们强烈建议初学者使用集成环境包进行安装。</p>
+
+<p>什么是集成环境包？</p>
+
+<p>我们学习PHP要安装的东西有很多。例如：网页服务器、数据库服务器和PHP语言核心的解释器。</p>
+
+<p>我们可以分开安装各部份，也可以合在一起安装一个集成好的软件。</p>
+
+<p>将这些合在一起的一个软件我们就叫作：集成环境包。</p>
+
+<p>这个过程需要修改很多配置文件才能完成。并且每个人的电脑情况，权限，经常容易操作出错。</p>
+
+<p>很容易因为环境问题影响到心情，我们的学习计划在初期非常绝对化：</p>
+
+<p>请使用集成环境包完成最开始的学习。</p>
+
+<p>等你学好PHP NB后，你爱用啥用啥，网上成堆的文章教你配置各种环境。</p>
+
+<p>选用什么样的集成环境包？</p>
+
+<p>集成环境包比较多。以下的这些全是各种英文名。只不过代表的是不同集成环境包的名字，不用去深纠。如下所示：</p>
+
+<p>AppServ</p>
+
+<p>PHPStudy</p>
+
+<p>APMserv</p>
+
+<p>XAMPP</p>
+
+<p>WAMPServer<br />
+... ...等等</p>
+
+<p>对于我们才入门的学习者来说，选择集成环境包的原则：</p>
+
+<p>更新快，版本比较新</p>
+
+<p>操作简单易于上手</p>
+
+<p>选择项不要过多</p>
+
+<p>因此，我们下面使用的集成环境包是：PHPstudy。当然，如果你对此块很熟悉了，也可以自行选择选择集成环境包。</p>
+
+<p>可以以在官方网址下载：<br />
+http://www.phpstudy.net/&nbsp;</p>
+
+<p>也可以在百度中搜索：*PHPstudy *&nbsp;&nbsp;这个5个字文字母进行下载。</p>
+
+<p>对学习PHP的新手来说，WINDOWS下PHP环境配置是一件很困难的事，就是老手也是一件烦琐的事。因此，无论你是新手还是老手，phpStudy 2016都是一个不错的选择，该程序集成Apache+PHP+MySQL+phpMyAdmin+ZendOptimizer，最新版本已集成最新的&nbsp;PHP7。</p>
+',
+      'summary' => '所谓服务器：不要把它想的太过于高深，不过就是提供一项特殊功能（服务）的电脑而已。
+显示网页的叫网页(web)服务器（server）。',
+      'image' => '/uploads/20181224/f5421f965b0f46d9c1b8f1a927df7894.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '开发环境',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    2 => 
+    array (
+      'id' => 5,
+      'create_time' => '2020-02-07 13:25:31',
+      'update_time' => '2023-04-13 22:55:23',
+      'sort' => 50,
+      'status' => 0,
+      'cate_id' => 5,
+      'title' => '开发环境是什么？',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>PHP是一门开发语言。而开发语言写出来的代码，通常需要在指定的软件下才能运行。因此，我们写好的代码需要（运行）显示出来看到，就需要安装这几个软件来运行代码。</p>
+
+<p>我们把运行我们写代码的几个软件和运行代码的软件统一都可称为开发环境。</p>
+
+<p>新手学习前常遇到的环境问题</p>
+
+<p>很多朋友最开始学习的时候，听说某个环境好就安装某些软件。由于缺乏相关知识，所以没有主见。陷入人云即云的怪圈里。今天换这个，明天换那个。</p>
+
+<p>当前验证真理的唯一标准，请始终保证一点：</p>
+
+<p>环境能满足你的学习需求。不要在环境上面反复纠结，耽误宝贵的学习时间。</p>
+
+<p>我们认为环境只要能满足学习要求即可。等学会了后，再去着磨一些更加复杂的互联网线上的、生产环境中的具体配置。</p>
+',
+      'summary' => 'PHP是一门开发语言。而开发语言写出来的代码，通常需要在指定的软件下才能运行。因此，我们写好的代码需要（运行）显示出来看到，就需要安装这几个软件来运行代码。',
+      'image' => '/uploads/20181224/a11e9ab3e8dc289dca70a105a7f177ee.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '开发环境',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    3 => 
+    array (
+      'id' => 4,
+      'create_time' => '2020-02-07 13:24:07',
+      'update_time' => '2020-02-07 13:24:07',
+      'sort' => 50,
+      'status' => 1,
+      'cate_id' => 5,
+      'title' => '为什么有些人学不会',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>互联网进入到人们生活中的方方面面了，世界首富比尔盖茨多次提到青少年编程，而编程是一种思维习惯的转化。</p>
+
+<p>作为写了10几年程序的人，我听到过一些说编程不好学的抱怨。</p>
+
+<p>从目前见到的数据统计，主要是因为在大学学习时遇到了C语言，学完后还不知道能干什么。很多人大学上完也就这么糊涂、恐惧的就过来了。</p>
+
+<p>只有很少的不到1%的人学不会，这部份往往是专业的艺术家，在艺术家里面极少一部份人外，他们的思维模式和我们遇到的大多数人不太一样，并且不进行编程思维的训练，所以学不会。</p>
+
+<p>而造成这个原因主要是因为社会、文化、背景、生活圈子多方面造成的。而不是因为笨。</p>
+
+<p>那我们绝大多数的人是哪些原因学不会的呢？</p>
+
+<p>1. 不相信自己能学会</p>
+
+<p>这一块很多人可能不相信，涉及到很深的心理学知识。与心理暗示、诅咒的原理一样。</p>
+
+<p>如果不相信自己能够学好，心里潜意识的念头里如果总是：PHP很难，我学不会。那么这个人肯定很难学会。</p>
+
+<p>把不相信自己能学会的负面情绪和观念给抛掉。</p>
+
+<p>只要你每天练习代码并相信自己。你肯定能学会，并且能学得很好，代码写的很成功，成为大牛！</p>
+
+<p>2. 懒</p>
+
+<p>人的天性有善有恶，而学不好程序的人，身上的一个通病，只有一个字就是&mdash;&mdash;&mdash;&mdash;懒！<br />
+基本语法，需要去背<br />
+函数需要去默写</p>
+
+<p>3. 自以为是</p>
+
+<p>一看就会，一写就错。以为自己是神童。</p>
+
+<p>4. 英文单词</p>
+
+<p>计算机里面常用的英文单词就那么一些。</p>
+
+<p>不要找英语的借口。本书会把英语单词都会跟你标注出来。看到不会的，就去翻一翻。</p>
+
+<p>5. 不坚持</p>
+
+<p>学着学着就放弃了。</p>
+
+<p>6. 不去提问，不会提问，不去思考</p>
+
+<p>解决问题前，先去搜索</p>
+
+<p>搜索解决不了再去提问</p>
+
+<p>PHP学院为大家准备了视频，也为大家准备了问答中心。</p>
+
+<p>大多数的人，不把问题详述清楚，不把错误代码贴完整。</p>
+
+<p>张嘴就来提问。我想神仙也不知道你的问题是什么吧？问题发出来前。换位思考一下自己看不看得懂这个问题。</p>
+
+<p>7. 你还需要自我鼓励</p>
+
+<p>在学习过程中，你会否定自己。其实任何人都会。大多数人都会遇到跟你一样的困难。只不过他们在克服困难，而一些人在逃避困难。</p>
+
+<p>学累的时候，放松一会儿。再去多读几遍。不断的告诉自己，你就是最棒的！</p>
+
+<p>学会交流和倾诉而非抱怨，并且不断的自我鼓励</p>
+',
+      'summary' => '',
+      'image' => '/uploads/20181224/b640f82ccf862c3b34e11f792220a1f5.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '不会',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    4 => 
+    array (
+      'id' => 3,
+      'create_time' => '2020-02-07 13:22:30',
+      'update_time' => '2023-04-13 22:55:25',
+      'sort' => 50,
+      'status' => 0,
+      'cate_id' => 5,
+      'title' => '零基础也能学习',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>学习PHP前很多人担心PHP是不是能真的学会。</p>
+
+<p>学习PHP学历要求不高，数学水平要求也不高，只需要会下面这些，你就可以跟着PHP中文网，开始愉快、高薪的PHP学习之旅：</p>
+
+<p>有一台电脑</p>
+
+<p>初中及以上文化水平</p>
+
+<p>必须会打字（五笔、拼音均可）</p>
+
+<p>会word（微软的office办公软件中的文字编辑软件）</p>
+
+<p>会上网（QQ，写邮件，玩微信，看小说，看电影，注册网站帐号，网上购物等）</p>
+
+<p>有一颗坚持的心</p>
+
+<p>如果会一点html就更好了.学习HTML可以去看我们开源的另外一本HTML入门书籍。</p>
+
+<p>不会HTML怎么办？也可以学习我们免费的HTML入门视频。</p>
+',
+      'summary' => '学习PHP前很多人担心PHP是不是能真的学会。
+学习PHP学历要求不高，数学水平要求也不高，只需要会下面这些，你就可以跟着PHP中文网，开始愉快、高薪的PHP学习之旅：
+有一台电脑',
+      'image' => '/uploads/20181224/894485902f96b13551b5450c7ddca081.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '零基础',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    5 => 
+    array (
+      'id' => 2,
+      'create_time' => '2020-02-07 13:21:28',
+      'update_time' => '2020-02-07 13:21:28',
+      'sort' => 50,
+      'status' => 1,
+      'cate_id' => 5,
+      'title' => 'PHP是什么',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>PHP（外文名:PHP: Hypertext Preprocessor，中文名：&ldquo;超文本预处理器&rdquo;）是一种通用开源脚本语言。语法吸收了C语言、Java和Perl的特点，利于学习，使用广泛，主要适用于Web开发领域。</p>
+
+<p>用PHP做出的动态页面与其他的编程语言相比，PHP是将程序嵌入到HTML（标准通用标记语言下的一个应用）文档中去执行，执行效率比完全生成HTML标记的CGI要高许多；PHP还可以执行编译后代码，编译可以达到加密和优化代码运行，使代码运行更快。</p>
+
+<p>全球市场分析</p>
+
+<p>目前PHP在全球网页市场、手机网页市场还有为手机提供API（程序接口）排名第一。</p>
+
+<p>在中国微信开发大量使用PHP来进行开发。</p>
+',
+      'summary' => 'PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）是一种通用开源脚本语言。语法吸收了C语言、Java和Perl的特点，利于学习，使用广泛，主要适用于Web开发领域。',
+      'image' => '/uploads/20181224/fc3112ab0fab9f255726674dc1fd0d17.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => 'PHP',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    6 => 
+    array (
+      'id' => 1,
+      'create_time' => '2020-02-07 13:10:20',
+      'update_time' => '2020-02-07 13:10:20',
+      'sort' => 50,
+      'status' => 1,
+      'cate_id' => 5,
+      'title' => '为什么学习PHP？',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>回答本书的几个问题吧。你到底，为什么要学习PHP？</p>
+
+<p>全国都缺PHP人才，非常好就业，PHP现在的工资水平很高，刚毕业可以拿到5000-9000每个月，特别优秀还可以破万。并且有非常多的就业机会。</p>
+
+<p>PHP入门简单，学习入门易入手。</p>
+
+<p>很多人反馈上完大学的C语言课程、java课程不会写任何东西。<br />
+诚然，中国的大学都以C语言作为主要的入门语言。但是，我们认为PHP是最简单入门，也是最合适入门的语言。</p>
+
+<p>你将学习到编程的思路，更加程序化的去处理问题。处理问题，将会更加规范化。</p>
+
+<p>如果你要创业，如果你要与互联网人沟通。未来互联网、移动互联网、信息化将会进一步围绕在你身边。你需要与人沟通，与人打交道。</p>
+
+<p>还有机会进入BAT（百度、阿里、腾讯），BAT这些企业他们在用PHP。国内和国外超一线的互联网公司，在超过90%在使用PHP来做手机API或者是网站。连微信等开放平台中的公众号的服务端也可以使用到PHP。</p>
+
+<p>大并发，还能免费。一天1个亿的访问量怎么办？PHP拥有大量优秀的开发者，在一定数据量的情况下完全能满足你的需求。国内外一线的互联网公司，很多将自己的大并发方案进行开源了。你可以免费获得很多成熟的、免费的、开源的大并发解决方案。</p>
+
+<p>开源更加节约成本也更加安全。windows很多都要收取授权费用，而使用linux的LAMP架构或者LNMP架构会更加安全。全球的黑客在帮你找漏洞。全球的工程师在帮忙修复漏洞。你发现一个他人已经消灭10个。</p>
+',
+      'summary' => '回答本书的几个问题吧。你到底，为什么要学习PHP？
+全国都缺PHP人才，非常好就业，PHP现在的工资水平很高，刚毕业可以拿到5000-9000每个月，特别优秀还可以破万。并且有非常多的就业机会。',
+      'image' => '/uploads/20181224/168eb2135c7abbc3f2efcad91c7106e3.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => 'php',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+  ),
+)
+[2023-04-13T23:47:23+08:00][sql] CONNECT:[ UseTime:0.000931s ] mysql:host=127.0.0.1;port=3306;dbname=ztx;charset=utf8mb4
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_auth_rule` [ RunTime:0.011636s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `status` = 1 ORDER BY `sort` ASC [ RunTime:0.001301s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.001330s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.001077s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.001324s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_module` [ RunTime:0.008519s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000676s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_cate` [ RunTime:0.006833s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_cate` ORDER BY `sort`,`id` DESC [ RunTime:0.000673s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `id` IN (18,19,21,22,23,24,25) [ RunTime:0.000721s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000744s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'cate' LIMIT 1 [ RunTime:0.000514s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_field` [ RunTime:0.007503s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000872s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_system` [ RunTime:0.007661s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_system` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000656s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `auth_open` = 0 [ RunTime:0.000775s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` [ RunTime:0.001111s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.000897s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.000426s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.000660s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_admin_log` [ RunTime:0.006757s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_admin_log` WHERE  `admin_id` = 1 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.000546s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000396s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000571s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001545s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_dictionary` [ RunTime:0.010386s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000842s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.001157s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001234s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000833s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.001486s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000789s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000477s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000760s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000549s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000445s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000443s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000594s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000735s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001070s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000849s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.000977s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000487s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000648s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000752s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000544s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000488s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000515s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000494s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000465s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 [ RunTime:0.001402s ]
+[2023-04-13T23:47:23+08:00][sql] SHOW FULL COLUMNS FROM `tp_article` [ RunTime:0.008818s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT COUNT(*) AS think_count FROM `tp_article` `Article` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000528s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_article` `Article` WHERE  `status` = 0 ORDER BY `id` DESC LIMIT 10,10 [ RunTime:0.000479s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000595s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000495s ]
+[2023-04-13T23:47:23+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001113s ]
+[2023-04-13T23:47:23+08:00][info] array (
+  'total' => 2,
+  'per_page' => 10,
+  'current_page' => 1,
+  'last_page' => 1,
+  'data' => 
+  array (
+  ),
+)
+[2023-04-13T23:49:47+08:00][sql] CONNECT:[ UseTime:0.011566s ] mysql:host=127.0.0.1;port=3306;dbname=ztx;charset=utf8mb4
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_auth_rule` [ RunTime:0.009692s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `status` = 1 ORDER BY `sort` ASC [ RunTime:0.001138s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.001109s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.000554s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.000724s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_module` [ RunTime:0.008767s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000871s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_cate` [ RunTime:0.006752s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_cate` ORDER BY `sort`,`id` DESC [ RunTime:0.000933s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `id` IN (18,19,21,22,23,24,25) [ RunTime:0.001041s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000867s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'cate' LIMIT 1 [ RunTime:0.000608s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_field` [ RunTime:0.008706s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001545s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_system` [ RunTime:0.006780s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_system` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000739s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `auth_open` = 0 [ RunTime:0.001469s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` [ RunTime:0.001288s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Article/index' LIMIT 1 [ RunTime:0.000823s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `id` = 188 LIMIT 1 [ RunTime:0.000356s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_auth_rule` WHERE  `name` = 'Page' LIMIT 1 [ RunTime:0.000641s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_admin_log` [ RunTime:0.008005s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_admin_log` WHERE  `admin_id` = 1 ORDER BY `id` DESC LIMIT 1 [ RunTime:0.000682s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000447s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000453s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000707s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_dictionary` [ RunTime:0.006824s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.001116s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.001012s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.001209s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000673s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.001508s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000592s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000443s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000831s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000473s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000437s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000471s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000516s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000488s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000843s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000796s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 20  AND `field` = 'sort' LIMIT 1 [ RunTime:0.001654s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000642s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Cate' LIMIT 1 [ RunTime:0.000416s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `field` FROM `tp_field` WHERE  ( field = 'pid' OR field = 'parent_id'  )  AND `module_id` = 20 LIMIT 1 [ RunTime:0.000572s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id`,`cate_name`,`parent_id` FROM `tp_cate` ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000445s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id` FROM `tp_cate` WHERE  `module_id` = 19 [ RunTime:0.000401s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `dict_value`,`dict_label` FROM `tp_dictionary` WHERE  `dict_type` = '1' ORDER BY `sort` ASC,`id` DESC [ RunTime:0.000448s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `pk` FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000395s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT `id` FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.000531s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 [ RunTime:0.001619s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_article` [ RunTime:0.008240s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT COUNT(*) AS think_count FROM `tp_article` `Article` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000637s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_article` `Article` WHERE  `status` = 0 ORDER BY `id` DESC LIMIT 0,10 [ RunTime:0.000511s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_cate` WHERE  `id` = 5 [ RunTime:0.000513s ]
+[2023-04-13T23:49:47+08:00][sql] SHOW FULL COLUMNS FROM `tp_users_type` [ RunTime:0.006499s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_users_type` WHERE  `id` = 0 [ RunTime:0.000711s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `model_name` = 'Article' LIMIT 1 [ RunTime:0.001015s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_module` WHERE  `table_name` = 'article' LIMIT 1 [ RunTime:0.000727s ]
+[2023-04-13T23:49:47+08:00][sql] SELECT * FROM `tp_field` WHERE  `module_id` = 19 ORDER BY `sort` ASC,`id` ASC [ RunTime:0.000970s ]
+[2023-04-13T23:49:47+08:00][info] array (
+  'total' => 2,
+  'per_page' => 10,
+  'current_page' => 1,
+  'last_page' => 1,
+  'data' => 
+  array (
+    0 => 
+    array (
+      'id' => 5,
+      'create_time' => '2020-02-07 13:25:31',
+      'update_time' => '2023-04-13 22:55:23',
+      'sort' => 50,
+      'status' => 0,
+      'cate_id' => 5,
+      'title' => '开发环境是什么？',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>PHP是一门开发语言。而开发语言写出来的代码，通常需要在指定的软件下才能运行。因此，我们写好的代码需要（运行）显示出来看到，就需要安装这几个软件来运行代码。</p>
+
+<p>我们把运行我们写代码的几个软件和运行代码的软件统一都可称为开发环境。</p>
+
+<p>新手学习前常遇到的环境问题</p>
+
+<p>很多朋友最开始学习的时候，听说某个环境好就安装某些软件。由于缺乏相关知识，所以没有主见。陷入人云即云的怪圈里。今天换这个，明天换那个。</p>
+
+<p>当前验证真理的唯一标准，请始终保证一点：</p>
+
+<p>环境能满足你的学习需求。不要在环境上面反复纠结，耽误宝贵的学习时间。</p>
+
+<p>我们认为环境只要能满足学习要求即可。等学会了后，再去着磨一些更加复杂的互联网线上的、生产环境中的具体配置。</p>
+',
+      'summary' => 'PHP是一门开发语言。而开发语言写出来的代码，通常需要在指定的软件下才能运行。因此，我们写好的代码需要（运行）显示出来看到，就需要安装这几个软件来运行代码。',
+      'image' => '/uploads/20181224/a11e9ab3e8dc289dca70a105a7f177ee.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '开发环境',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+    1 => 
+    array (
+      'id' => 3,
+      'create_time' => '2020-02-07 13:22:30',
+      'update_time' => '2023-04-13 22:55:25',
+      'sort' => 50,
+      'status' => 0,
+      'cate_id' => 5,
+      'title' => '零基础也能学习',
+      'author' => '未知',
+      'source' => 'php中文网',
+      'content' => '<p>学习PHP前很多人担心PHP是不是能真的学会。</p>
+
+<p>学习PHP学历要求不高，数学水平要求也不高，只需要会下面这些，你就可以跟着PHP中文网，开始愉快、高薪的PHP学习之旅：</p>
+
+<p>有一台电脑</p>
+
+<p>初中及以上文化水平</p>
+
+<p>必须会打字（五笔、拼音均可）</p>
+
+<p>会word（微软的office办公软件中的文字编辑软件）</p>
+
+<p>会上网（QQ，写邮件，玩微信，看小说，看电影，注册网站帐号，网上购物等）</p>
+
+<p>有一颗坚持的心</p>
+
+<p>如果会一点html就更好了.学习HTML可以去看我们开源的另外一本HTML入门书籍。</p>
+
+<p>不会HTML怎么办？也可以学习我们免费的HTML入门视频。</p>
+',
+      'summary' => '学习PHP前很多人担心PHP是不是能真的学会。
+学习PHP学历要求不高，数学水平要求也不高，只需要会下面这些，你就可以跟着PHP中文网，开始愉快、高薪的PHP学习之旅：
+有一台电脑',
+      'image' => '/uploads/20181224/894485902f96b13551b5450c7ddca081.jpg',
+      'images' => '',
+      'download' => '',
+      'tags' => '零基础',
+      'hits' => 0,
+      'keywords' => '',
+      'description' => '',
+      'template' => '',
+      'url' => '',
+      'view_auth' => 0,
+      'cate' => 
+      array (
+        'id' => 5,
+        'create_time' => '2020-02-05 20:52:39',
+        'update_time' => '2020-02-05 20:52:39',
+        'sort' => 21,
+        'status' => 1,
+        'cate_name' => '公司新闻',
+        'en_name' => '',
+        'cate_folder' => '',
+        'parent_id' => 4,
+        'module_id' => 19,
+        'url' => '',
+        'image' => '',
+        'ico_image' => '',
+        'title' => '',
+        'keywords' => '',
+        'description' => '',
+        'summary' => '',
+        'template_list' => '',
+        'template_show' => '',
+        'page_size' => 0,
+        'is_menu' => 1,
+        'is_next' => 0,
+        'is_blank' => 0,
+      ),
+      'usersType' => NULL,
+    ),
+  ),
+)
