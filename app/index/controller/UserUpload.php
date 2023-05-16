@@ -54,6 +54,7 @@ class UserUpload extends Base
     private $tableName;
     // 当前主模型
     private $modelName; 
+    
         
     // 初始化
     public function initialize()
@@ -70,7 +71,7 @@ class UserUpload extends Base
         ]);
     }
 
-    // 用户中心首页
+    // 用户上传
     public function add(string $id = "")
     {
 
