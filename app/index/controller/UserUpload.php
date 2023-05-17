@@ -54,13 +54,24 @@ class UserUpload extends Base
     private $tableName;
     // 当前主模型
     private $modelName; 
+     //当前上传
+    private $userupload; 
+    //上传的$token验证
+    private $token; 
     
         
     // 初始化
     public function initialize()
     {
         parent::initialize();
-        $this->userId = Session::get('user.id');     
+        $this->userId = Session::get('user.id'); 
+        $id =  Request::param('id');
+        $this->userupload = \app\common\model\UserUpload::where('id', $id)->find(); 
+        $this->validate = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');
+        $this->tableName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('table_name');
+        $this->modelName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');
+        $this->token = bin2hex(random_bytes(16)); // 生成一个16字节的随机字符串
+        Session::set('upload_token',$this->token);
         View::assign([
             'cate'        => ['topid' => 0],                                  // 栏目信息
             'system'      => $this->system,                                   // 系统信息
@@ -68,6 +79,7 @@ class UserUpload extends Base
             'title'       => $this->system['title'] ?: $this->system['name'], // 网站标题
             'keywords'    => $this->system['key'],                            // 网站关键字
             'description' => $this->system['des'],                            // 网站描述
+            'upload_token'=>$this->token
         ]);
     }
 
@@ -75,7 +87,7 @@ class UserUpload extends Base
     public function add(string $id = "")
     {
 
-        $userupload= \app\common\model\UserUpload::where('id', $id)->find();
+        $userupload = $this->userupload;
        if($userupload['status']==0){
         $this->error('活动尚未开始，请等待');
        }
@@ -92,8 +104,8 @@ class UserUpload extends Base
         }
        
        }               
-       $tableName = \app\common\model\Module::Where('id',$userupload['module_r'])->value('table_name');
-       $modelName = \app\common\model\Module::Where('id',$userupload['module_r'])->value('model_name');
+       $tableName = $this->tableName;
+       $modelName = $this->modelName;
        // 获取字段信息
        $columns = MakeBuilder::getAddColumns($tableName);
 
