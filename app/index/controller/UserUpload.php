@@ -163,12 +163,8 @@ class UserUpload extends Base
              // 验证失败 输出错误信息
              $this->error("非法上传");
         }
-        
-         
+                 
              $data   = MakeBuilder::changeFormData(Request::except(['file'], 'post'), $this->tableName);
-             Log::info(Request::except(['file'], 'post'));
-             Log::info('格式化之后');
-             Log::info( $data);
              $result = $this->admin_validate($data, $this->validate);
              if (true !== $result) {
                  // 验证失败 输出错误信息

@@ -85,12 +85,10 @@ class Cms
         }
         $model = '\app\common\model\\' . $modelName;
         $info  = $model::edit($id)->toArray();
-        Log::info('原始$info');
-        Log::info($info);
+     
         // 格式化详情页面的内容
         $info = $this->changeInfo($tableName, $info);
-        Log::info('changeInfo');
-        Log::info($info);
+      
         return $info;
     }
 

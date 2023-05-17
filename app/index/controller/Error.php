@@ -80,8 +80,7 @@ class Error extends Base
 
             $info = Cms::getInfo($info['id'], $this->tableName);
             // 阅读权限
-            Log::info('阅读权限');
-            Log::info($info);
+          
             $viewAuth = Cms::checkViewAuth($info);
             if ($viewAuth !== true) {
                 $this->error($viewAuth['msg'], $viewAuth['url']);
@@ -119,8 +118,7 @@ class Error extends Base
         // 查找内容详情
         $info = Cms::getInfo($id, $this->tableName);
           // 阅读权限
-          Log::info('阅读权限');
-          Log::info($info);
+     
         // 阅读权限
         $viewAuth = Cms::checkViewAuth($info);
         if ($viewAuth !== true) {

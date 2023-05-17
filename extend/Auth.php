@@ -245,9 +245,7 @@ class Auth
             //查找是否有上级别
             if ($data['pid']) {
                 //查询上级url
-                $route = Db::name('auth_rule')->where('id', '=', $data['pid'])->find();
-                Log::info('$data[pid]');
-                Log::info($data['pid']);
+                $route = Db::name('auth_rule')->where('id', '=', $data['pid'])->find();         
                 $crumb = $this->getBreadCrumb($route['name']);
                 foreach ($crumb as $k => $v) {
                     $result[] = [
