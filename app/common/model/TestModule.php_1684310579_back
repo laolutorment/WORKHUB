@@ -1,12 +1,12 @@
 <?php
 /**
  * +----------------------------------------------------------------------
- * | 用于测试的临时模块验证器
+ * | 用于测试的临时模块模型
  * +----------------------------------------------------------------------
  *                      .::::.
  *                    .::::::::.            | AUTHOR: siyu
  *                    :::::::::::           | EMAIL: 407593529@qq.com
- *                 ..:::::::::::'           | DATETIME: 2023/05/17
+ *                 ..:::::::::::'           | DATETIME: 2023/05/11
  *             '::::::::::::'
  *                .::::::::::
  *           '::::::::::::::..
@@ -23,30 +23,16 @@
  *                      '.:::::'                    ':'````..
  * +----------------------------------------------------------------------
  */
-namespace app\admin\validate;
+namespace app\common\model;
 
-use think\Validate;
-
-class TestModule extends Validate
+class TestModule extends Base
 {
-    protected $rule = [
-        'sort|排序' => [
-            'require' => 'require',
-            'max' => '8',
-            'number' => 'number',
-        ],
-        'status|状态' => [
-            'require' => 'require',
-            'max' => '1',
-        ],
-        'name|姓名' => [
-            'require' => 'require',
-        ],
-        'student_id|学号' => [
-            'require' => 'require',
-        ],
-        'work_name|作品名称' => [
-            'require' => 'require',
-        ]
-    ];
+    // 定义时间戳字段名
+    protected $createTime = 'create_time';
+    protected $updateTime = 'update_time';
+
+    
+    protected $table = 'tp_test';
+    
+
 }

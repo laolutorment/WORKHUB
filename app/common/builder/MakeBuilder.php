@@ -828,12 +828,14 @@ class MakeBuilder
     {
         // 查询所有字段信息
         $fields    = self::getFields($tableName);
+       
         $fieldsNew = [];
         foreach ($fields as $k => $v) {
             $fieldsNew[$v['field']] = $v;
         }
+       
         foreach ($formData as $k => $v) {
-            if (array_key_exists($k, $fieldsNew)) {
+            if (array_key_exists($k, $fieldsNew)) {                
                 // 改变日期等格式
                 if ($fieldsNew[$k]['type'] == 'date' || $fieldsNew[$k]['type'] == 'time' || $fieldsNew[$k]['type'] == 'datetime') {
                     $formData[$k] = strtotime($v);

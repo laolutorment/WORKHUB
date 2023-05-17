@@ -65,27 +65,37 @@ class UserUpload extends Base
     {
         parent::initialize();
         $this->userId = Session::get('user.id'); 
-        $id =  Request::param('id');
-        $this->userupload = \app\common\model\UserUpload::where('id', $id)->find(); 
+        if(!empty(Request::param('userupload_id'))){
+            $userupload_id =  Request::param('userupload_id');
+        }else{
+            $this->error('未选择活动');
+        }
+        
+        $this->userupload = \app\common\model\UserUpload::where('id', $userupload_id)->find(); 
         $this->validate = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');
         $this->tableName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('table_name');
-        $this->modelName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');
-        $this->token = bin2hex(random_bytes(16)); // 生成一个16字节的随机字符串
-        Session::set('upload_token',$this->token);
+        $this->modelName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');        
         View::assign([
             'cate'        => ['topid' => 0],                                  // 栏目信息
             'system'      => $this->system,                                   // 系统信息
             'public'      => $this->public,                                   // 公共目录
             'title'       => $this->system['title'] ?: $this->system['name'], // 网站标题
             'keywords'    => $this->system['key'],                            // 网站关键字
-            'description' => $this->system['des'],                            // 网站描述
-            'upload_token'=>$this->token
+            'description' => $this->system['des'],                            // 网站描述         
+            'userupload_id' =>$userupload_id
         ]);
     }
 
     // 用户上传
-    public function add(string $id = "")
+    public function add()
     {
+
+        $this->token =  Session::get('upload_token')?: bin2hex(random_bytes(16)); // 生成一个16字节的随机字符串
+        //设置来源认证的upload_token参数
+        Session::set('upload_token',$this->token);        
+        View::assign([           
+            'upload_token'=>$this->token,          
+        ]);
 
         $userupload = $this->userupload;
        if($userupload['status']==0){
@@ -146,9 +156,20 @@ class UserUpload extends Base
      // 添加保存
      public function addPost()
      {
-         if (Request::isPost()) {
+        if (Request::isPost()) {
+        //来源认证判断
+        $token = isset($_POST['upload_token']) ? $_POST['upload_token'] : '';       
+        if (empty($token) || $token !== Session::get('upload_token')) {
+             // 验证失败 输出错误信息
+             $this->error("非法上传");
+        }
+        
+         
              $data   = MakeBuilder::changeFormData(Request::except(['file'], 'post'), $this->tableName);
-             $result = $this->validate($data, $this->validate);
+             Log::info(Request::except(['file'], 'post'));
+             Log::info('格式化之后');
+             Log::info( $data);
+             $result = $this->admin_validate($data, $this->validate);
              if (true !== $result) {
                  // 验证失败 输出错误信息
                  $this->error($result);

@@ -42,7 +42,7 @@ class TestModule extends Validate
         'name|姓名' => [
             'require' => 'require',
         ],
-        'student_id|学号' => [
+        ' student_id|学号' => [
             'require' => 'require',
         ],
         'work_name|作品名称' => [
