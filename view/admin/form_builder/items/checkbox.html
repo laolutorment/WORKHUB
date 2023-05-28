@@ -6,7 +6,13 @@
             {volist name="form[type].options" id="option"}
             <div class="icheck-peterriver icheck-inline">
                 <input type="checkbox" name="{$form[type].name}[]" class="dd_radio" id="{$form[type].name}{$i}" value="{$key}" {in name="key" value="$form[type].value|default=''" }checked{/in} {$form[type].extra_attr|raw|default=''}>
-                <label for="{$form[type].name}{$i}">{$option|raw|htmlspecialchars}</label>
+                <label for="{$form[type].name}{$i}" >
+                    {if $form[type].name =='field_r'}
+                    {notempty name="option.required"}<span style="color:red;">*&nbsp</span>{/notempty}{$option.name|raw|htmlspecialchars}
+                    {else}
+                    {$option|raw|htmlspecialchars}
+                    {/if}                    
+                </label>
             </div>
             {/volist}
         </div>

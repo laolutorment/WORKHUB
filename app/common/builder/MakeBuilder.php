@@ -672,6 +672,7 @@ class MakeBuilder
                     ->select();
                 if ($result) {
                     $result = $this->changeSelect($result->toArray());
+                    Log::info($result);
                     // 针对栏目ID字段做特殊处理（需考虑是否可选择）
                     if ($field['field'] == 'cate_id') {
                         $idArr     = \app\common\model\Cate::where('module_id', $field['module_id'])->column('id');
@@ -685,6 +686,19 @@ class MakeBuilder
                             ];
                         }
                         $result = $resultNew;
+                    }
+                        // 针对用户上传的字段选择表单默认值做特殊处理（限制可选字段的范围在已选中的模型下的字段）         
+                    if ($field['field'] == 'field_r') {
+                        if(empty(Request::param('id'))){
+                            $result = [];
+                        }else{
+                            $id = Request::param('id');
+                            $module_id  = \app\common\model\UserUpload::where('id', $id)->value('module_r');
+                            $result = \app\common\model\Field::where('module_id', $module_id)
+                            ->where('type', '<>', 'hidden')
+                            ->column('name,required', 'id');
+                        }
+                       
                     }
                 }
             }

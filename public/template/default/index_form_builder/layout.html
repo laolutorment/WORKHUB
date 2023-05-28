@@ -248,7 +248,7 @@
             <!--数据表开始-->
             <form name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
                <!-- 添加来源认证$upload_token -->
-               <input class="hide" name="upload_token" value="{$upload_token}">
+               <input class="hide" id="upload_token" name="upload_token" value="{$upload_token}">
                <input class="hide" name="userupload_id" value="{$userupload_id}">
                  <!--顶部提示开始-->
             {notempty name="page_tips_top"}
@@ -417,7 +417,6 @@
 	
 	
 	
-	
 	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 	$(document).on('click', '.remove_images', function () {
     var file = $(this).parent().parent().parent().find(":first-child").val();
@@ -483,14 +482,12 @@ if($( '[name="site_img_choose"]' ).length >0 ){
                     url: "/admin/Index/autocomplete_file",
                     data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%img%']]},
                     dataType: "json",
-                    success: function(data){
-					
+                    success: function(data){					
                         response(data);
                     }
                 });
 	  },
-	  select: function (event, ui) {    // 下拉框选中事件
-            
+	  select: function (event, ui) {    // 下拉框选中事件            
 		 var images = '' +
                     '<div class="row no-gutters">' +
                     '   <div class="col-4 col-sm-4"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
@@ -503,11 +500,9 @@ if($( '[name="site_img_choose"]' ).length >0 ){
                     '       </div>' +
                     '   </div>' +
 					'   <div class="col-4 col-sm-2"><a href="'+ ui.item.link +'" target="_blank"> <img class="images_preview_info" src="'+ ui.item.link +'"  ></a></div>'+
-					
-					
+										
                     '</div>';
                 var images_list = $('#more_images_images').html();
-
                 $('#more_images_images').html(images + images_list);
             return false;
         }

@@ -26,6 +26,7 @@
 
 namespace app\index\controller;
 
+use AlibabaCloud\Client\Request\Request as RequestRequest;
 use think\facade\Request;
 use think\facade\Session;
 use think\facade\View;
@@ -137,20 +138,16 @@ class UserUpload extends Base
        // 构建页面
        $builder = FormBuilder::getInstance();
        //设置页面标题
-       $userupload['page_title']?$builder->setPageTitle($userupload['page_title']):$builder->setPageTitle('用户上传');
-       
+       $userupload['page_title']?$builder->setPageTitle($userupload['page_title']):$builder->setPageTitle('用户上传');       
        //设置页面上端提示信息
        $userupload['page_top_tips']?$builder->setPageTips($userupload['page_top_tips'], 'info', 'top'):"";
        //设置页面下端提示信息
        $userupload['page_end_tips']?$builder->setPageTips($userupload['page_end_tips'], 'info', 'bottom'):"";
-
        if ($hideShowAll) {
            $builder->hideShowAll();
        }
        $groups ? $builder->addGroup($groups) : $builder->addFormItems($columns);
-
-       return $builder->fetch("./template/default/index_form_builder/layout.html");
-       
+       return $builder->fetch("./template/default/index_form_builder/layout.html");       
     }
 
      // 添加保存
@@ -181,5 +178,6 @@ class UserUpload extends Base
          }
      }
 
+   
     
 }
