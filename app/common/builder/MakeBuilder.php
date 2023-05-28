@@ -50,7 +50,7 @@ class MakeBuilder
      * @param string $tableName 表名称
      * @return array
      */
-    public function getFields(string $tableName = '')
+    public function getFields(string $tableName = '',array $custom_field_ids = [])
     {
         // 根据表名称查询出当前模块的id
         $module = Module::where('table_name', $tableName)
@@ -59,11 +59,21 @@ class MakeBuilder
         if (!$module) {
             return [];
         }
-        // 根据模块ID获取所有字段
-        $fields = Field::where('module_id', $module['id'])
+
+        if(!empty($custom_field_ids)){
+            //根据已知的字段ID来获取字段
+            $fields = Field::whereIn('id', $custom_field_ids)
             ->order(['sort' => 'asc', 'id' => 'asc'])
             ->select()
             ->toArray();
+        }else{
+            // 根据模块ID获取所有字段
+        $fields = Field::where('module_id', $module['id'])
+        ->order(['sort' => 'asc', 'id' => 'asc'])
+        ->select()
+        ->toArray();
+        }
+        
 
         foreach ($fields as &$field) {
             // 给每个字段增加一个属性：是否主键
@@ -133,7 +143,7 @@ class MakeBuilder
      * @param string $tableName 表名称
      * @return array
      */
-    public function getAddColumns(string $tableName = '', array $info = [])
+    public function getAddColumns(string $tableName = '', array $info = [],array $custom_field_ids = [])
     {
         // 查询模型的主键
         $module = \app\common\model\Module::where('table_name', $tableName)->find();

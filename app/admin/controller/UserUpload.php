@@ -112,8 +112,7 @@ $extra_js = <<<'EOD'
                                     "<label for=\"field_r"+item.value+"\" >"+item.required+item.text+"</label></div>";
                             html += text;       
                             });
-                            html += "</div>"; 	
-                          
+                            html += "</div>"; 	                          
                             $('#form_group_field_r .col-9.col-sm-9.col-md-9.col-lg-6.col-xl-4').html(html);                              
                 }
             });
