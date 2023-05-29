@@ -152,18 +152,20 @@ class Base extends Model
                         $str .= $level[$setupFields[1]] . '-';
                     }
                     $list[$k][$vv['field']] = rtrim($str, '-');
-                } else {                  
+                } else {
                     // 多选情况
-                    if (strpos($v[$vv['field']], ',') !== false||$vv['relation_model']=="field") {                        
+                    if (strpos($v[$vv['field']], ',') !== false) {
                         $hasManyModel = '\app\common\model\\' . $vv['relation_model'];
                         $hasManyPk    = (new $hasManyModel())->getPk();
                         $hasManys     = $hasManyModel::where($hasManyPk, 'in', $v[$vv['field']])->column($vv['relation_field']);
                         if ($hasManys) {
                             $list[$k][$vv['field']] = implode(',', $hasManys);
-                        }                       
-                    } else {                        
-                        $list[$k][$vv['field']] = !empty($v->{$vv['relation_model']}) ? $v->{$vv['relation_model']}->getData($vv['relation_field']) : '';                     
-            
+                        }
+                    } else {
+                        
+                        $list[$k][$vv['field']] = !empty($v->{$vv['relation_model']}) ? $v->{$vv['relation_model']}->getData($vv['relation_field']) : '';
+                       
+             
                     }
                 }
             }
