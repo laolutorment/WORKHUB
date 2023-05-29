@@ -154,7 +154,7 @@ class Base extends Model
                     $list[$k][$vv['field']] = rtrim($str, '-');
                 } else {
                     // 多选情况
-                    if (strpos($v[$vv['field']], ',') !== false) {
+                    if (strpos($v[$vv['field']], ',') !== false||$vv['relation_model']=='field') {
                         $hasManyModel = '\app\common\model\\' . $vv['relation_model'];
                         $hasManyPk    = (new $hasManyModel())->getPk();
                         $hasManys     = $hasManyModel::where($hasManyPk, 'in', $v[$vv['field']])->column($vv['relation_field']);
