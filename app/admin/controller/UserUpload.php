@@ -53,13 +53,19 @@ class UserUpload extends Base
             if($v['type']!='hidden'){  
                 if($v['required']=="1"){
                     $required = '<span style="color:red;">*&nbsp</span>';
+                    $checked = "checked";
+                    $disabled = 'onclick="return false;"';
                 } else{
                     $required ='';
+                    $checked = "";
+                    $disabled = "";
                 }            
             $info = [
                 'value' => $v['id'],
                 'text' =>  $v['name'],
-                'required' =>$required              
+                'required' =>$required,
+                'checked' =>  $checked,
+                'disabled' => $disabled,          
             ];
             $data[]=$info;
             }
@@ -108,7 +114,7 @@ $extra_js = <<<'EOD'
                             // 访问每个数组元素的子元素
                             
                         var text = "<div class=\"icheck-peterriver icheck-inline\">"+
-                                    "<input type=\"checkbox\" name=\"field_r[]\" id=\"field_r"+item.value+"\" class=\"dd_radio\" value=\""+item.value+"\" >"+
+                                    "<input type=\"checkbox\" name=\"field_r[]\" id=\"field_r"+item.value+"\" class=\"dd_radio\" value=\""+item.value+"\" "+item.checked+"  "+item.disabled+" >"+
                                     "<label for=\"field_r"+item.value+"\" >"+item.required+item.text+"</label></div>";
                             html += text;       
                             });
@@ -169,7 +175,7 @@ EOD;
                     $.each(data, function(index, item) {
                             // 访问每个数组元素的子元素
                         var text = "<div class=\"icheck-peterriver icheck-inline\">"+
-                                    "<input type=\"checkbox\" name=\"field_r[]\" id=\"field_r"+item.value+"\" class=\"dd_radio\" value=\""+item.value+"\" >"+
+                                    "<input type=\"checkbox\" name=\"field_r[]\" id=\"field_r"+item.value+"\" class=\"dd_radio\" value=\""+item.value+"\" "+item.checked+"  "+item.disabled+" >"+
                                     "<label for=\"field_r"+item.value+"\" >"+item.required+item.text+"</label></div>";
                             html += text;       
                             });

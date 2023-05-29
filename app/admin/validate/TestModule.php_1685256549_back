@@ -6,7 +6,7 @@
  *                      .::::.
  *                    .::::::::.            | AUTHOR: siyu
  *                    :::::::::::           | EMAIL: 407593529@qq.com
- *                 ..:::::::::::'           | DATETIME: 2023/05/28
+ *                 ..:::::::::::'           | DATETIME: 2023/05/17
  *             '::::::::::::'
  *                .::::::::::
  *           '::::::::::::::..
@@ -36,6 +36,7 @@ class TestModule extends Validate
             'number' => 'number',
         ],
         'status|状态' => [
+            'require' => 'require',
             'max' => '1',
         ],
         'name|姓名' => [

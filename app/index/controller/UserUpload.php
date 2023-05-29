@@ -117,8 +117,9 @@ class UserUpload extends Base
        }               
        $tableName = $this->tableName;
        $modelName = $this->modelName;
+       $custom_field_ids = explode(",", $this->userupload['field_r']);
        // 获取字段信息
-       $columns = MakeBuilder::getAddColumns($tableName);
+       $columns = MakeBuilder::getAddColumns($tableName,[],$custom_field_ids);
 
        // 获取分组后的字段信息
        $groups = MakeBuilder::getAddGroups($modelName, $tableName, $columns);

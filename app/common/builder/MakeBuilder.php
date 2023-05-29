@@ -150,8 +150,12 @@ class MakeBuilder
         $model  = '\app\common\model\\' . $module->model_name;
         $user   = new $model;
         $pk     = $user->getPk();
-
-        $fields  = $this->getFields($tableName);
+        if(!empty($custom_field_ids)){
+            $fields  = $this->getFields($tableName,$custom_field_ids);
+        }else{
+            $fields  = $this->getFields($tableName);
+        }
+        
         $columns = [];
         foreach ($fields as &$field) {
             // 主键不可新增，当方法名中包含add时系统认为是新增页面，应跳过主键字段
@@ -682,7 +686,7 @@ class MakeBuilder
                     ->select();
                 if ($result) {
                     $result = $this->changeSelect($result->toArray());
-                    Log::info($result);
+                    
                     // 针对栏目ID字段做特殊处理（需考虑是否可选择）
                     if ($field['field'] == 'cate_id') {
                         $idArr     = \app\common\model\Cate::where('module_id', $field['module_id'])->column('id');

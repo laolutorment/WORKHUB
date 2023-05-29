@@ -31,7 +31,6 @@ class TestModule extends Validate
 {
     protected $rule = [
         'sort|排序' => [
-            'require' => 'require',
             'max' => '8',
             'number' => 'number',
         ],
