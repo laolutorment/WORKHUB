@@ -6,7 +6,7 @@
  *                      .::::.
  *                    .::::::::.            | AUTHOR: siyu
  *                    :::::::::::           | EMAIL: 407593529@qq.com
- *                 ..:::::::::::'           | DATETIME: 2023/05/30
+ *                 ..:::::::::::'           | DATETIME: 2023/05/28
  *             '::::::::::::'
  *                .::::::::::
  *           '::::::::::::::..
@@ -31,6 +31,7 @@ class TestModule extends Validate
 {
     protected $rule = [
         'sort|排序' => [
+            'require' => 'require',
             'max' => '8',
             'number' => 'number',
         ],
