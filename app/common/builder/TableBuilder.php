@@ -422,6 +422,20 @@ class TableBuilder
                     'class' => 'btn btn-danger btn-xs confirm',
                 ];
                 break;
+                //详情页按钮
+                case 'info':
+                    // 默认属性
+                    $btn_attribute = [
+                        'type'  => 'info',
+                        'title' => '详情',
+                        'icon'  => 'fa fa-list',
+                        'class' => 'btn btn-primary btn-xs',
+                        'href'   => url('info',['id' => '__id__']),
+                        'target' => '_blank',
+                        'layer' =>'on'
+                    ];
+                    break;
+    
 
                 // 自定义按钮
             default:

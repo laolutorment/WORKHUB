@@ -469,7 +469,7 @@ abstract class Base
                 } elseif ($column['type'] == 'datetime') {
                     $value = is_int($value) && $value != 0 ? date('Y-m-d H:i:s', $value) : $value;
                 } elseif ($column['type'] == 'images' || $column['type'] == 'files') {
-                    $value = json_decode($value, true);
+                    $value = isset($value)?json_decode($value, true):$value;
                 }
 
                 $columns[$column['field']] = [

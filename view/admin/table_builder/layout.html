@@ -274,8 +274,14 @@
 											while (result = reg.exec(url)) {
 												url = url.replace(result[0], row[result[1]]);
 											}
+
+                                            //自定义按钮添加弹层显示模式判断
+                                            if('{$right_button.layer|default='off'}'=='on'){                                               
+                                            actions.push('<a class="{$right_button.class|default=''}"  href=\"javascript:void(0)\" onclick=\"$.modal.open(\'详情\', \'info.html?id='+row.id+'&_layer=1\')\"><i class="{$right_button.icon|default=''}"></i> {$right_button.title|default=''}</a> ');
+                                            }else{
 											actions.push('<a class="{$right_button.class|default=''}" target="{$right_button.target|default=''}" href="'+url+'"><i class="{$right_button.icon|default=''}"></i> {$right_button.title|default=''}</a> ');
 										}
+                                        }
 
 										{/volist}
 										return actions.join('');
