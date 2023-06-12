@@ -29,12 +29,15 @@ use think\App;
 use think\facade\Log;
 use think\facade\Request;
 use think\Image;
+use think\facade\Session;
 
 class Upload extends Base
 {
 
     // 上传方式 [chunk 大文件分片上传, tp 沿用TP上传]
     private $uploadType = "";
+    private $uploadMainDir = "";
+    private $indexUploadRule = [];
 
     // 上传验证规则
     protected $uploadValidate = [];
@@ -45,6 +48,28 @@ class Upload extends Base
         parent::__construct($app);
         // 默认上传方式
         $this->uploadType = "chunk";
+        // 上传主目录设置
+        $this->uploadMainDir = Request::param('path');
+        //生成自定义规则
+        $modul_id = \app\common\model\Module::where('model_name',Request::param('modelName'))->value('id');
+        $fields_setup = \app\common\model\Field::where('module_id',$modul_id)->where('field',Request::param('fieldName'))->value('setup');        
+        $fields_setup = string2array($fields_setup); 
+        $fields_setup_rules = [];
+        if(!empty($fields_setup['fileExt'])){
+            $fields_setup_rules['fileExt']=$fields_setup['fileExt'];
+        }    
+        if(!empty($fields_setup['fileSize'])){
+            $fields_setup_rules['fileSize']=$fields_setup['fileSize']*1024;
+        }    
+        if(!empty($fields_setup['height'])){
+            $fields_setup_rules['height']=$fields_setup['height'];
+        }    
+        if(!empty($fields_setup['width'])){
+            $fields_setup_rules['width']=$fields_setup['width'];
+        }      
+        if(!empty($fields_setup_rules)){
+            $this->indexUploadRule =['image' =>$fields_setup_rules];
+        }
 
         // 验证规则
         $this->uploadValidate = [
@@ -55,6 +80,19 @@ class Upload extends Base
     // 上传文件
     public function index()
     {
+        $token = isset($_POST['token']) ? $_POST['token'] : '';       
+        if (empty($token) || $token !== Session::get('upload_token')) {
+             // 验证失败 输出错误信息
+            Log::info($token);
+            Log::info(Session::get('upload_token'));
+            $error_msg =  [
+                'code' => 0,
+                'msg'  => '错误:非法上传' ,
+                'url'  => ''
+            ];
+            return json($error_msg);
+        }
+        
         if (Request::param('from') == 'ckeditor') {
             // 获取上传文件表单字段名
             $fileKey = array_keys(request()->file());
@@ -102,6 +140,7 @@ class Upload extends Base
     private function uploadVal()
     {
         $file = [];
+
         if (Request::param('upload_type') == 'file' || Request::param('action') == 'upload_video' | Request::param('action') == 'upload_file') {
             // 文件限制
             if ($this->system['upload_file_ext']) {
@@ -165,14 +204,20 @@ class Upload extends Base
     private function bigUpload()
     {
         // 验证
-        $file = request()->file('file');
+        $file = request()->file('file');       
         try {
             validate($this->uploadValidate)
                 ->check(['file' => $file]);
+                //前台自定义图片验证类
+                if(!empty($this->indexUploadRule)){                   
+                    validate('\app\index\validate\uploadValidate')
+                    ->rule($this->indexUploadRule)
+                    ->check(['image' => $file]);  
+                }
         } catch (\Exception $e) { // think\exception\ValidateException  取消验证异常捕获
             return [
                 'code' => 0,
-                'msg'  => 'ERROR:' . $e->getMessage(),
+                'msg'  => '错误:' . $e->getMessage(),
                 'url'  => ''
             ];
         }
@@ -207,7 +252,7 @@ class Upload extends Base
 
         // Settings
         // $targetDir = ini_get("upload_tmp_dir") . DIRECTORY_SEPARATOR . "plupload";
-		$newdir=Request::param('path');
+		$newdir='index'. DIRECTORY_SEPARATOR .Request::param('path');
 		$file_type=Request::param('upload_type');
         // 设置临时上传目录
         $targetDir = public_path() . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'temp';
@@ -252,7 +297,7 @@ class Upload extends Base
        
         //ZTX-005修改命名规则
         // 正式上传完整目录信息
-        $uploadPath = $uploadDir . $fileName;
+        $uploadPath = $uploadDir .DIRECTORY_SEPARATOR. $fileName;
         //原图路径
         $biguploadPath=$uploadPath;
 
@@ -373,22 +418,18 @@ class Upload extends Base
             $uploadPath = '/' . str_replace('\\', '/', $uploadPath);
             // 上传驱动
             $uploadPath = $this->uploadDriver($uploadPath);
-			//ZTX-005把文件上传信息写入上传文件管理模块
-			
-			$modelFM='\app\common\model\FileManagement';
 
+			//ZTX-005把文件上传信息写入上传文件管理模块			
+			$modelFM='\app\common\model\FileManagement';
             if($file_type=='img'){
                 $image = Image::open($biguploadPath);//打开原图
                 //添加缩略图路径
-                $smallimage=$uploadDir .'small_'. $fileName;
+                $smallimage=public_path() . DIRECTORY_SEPARATOR . 'uploads' .DIRECTORY_SEPARATOR.'index'.DIRECTORY_SEPARATOR.'thumb'.DIRECTORY_SEPARATOR.'small_'. $fileName;
                 $image->thumb(150, 150)->save($smallimage);//生成150x150缩略图
-                $smalluploadPath= str_replace(public_path() . DIRECTORY_SEPARATOR, '', $smallimage);
-                
-                $smalluploadPath = '/' . str_replace('\\', '/', $smalluploadPath);
-               
+                $smalluploadPath= str_replace(public_path() . DIRECTORY_SEPARATOR, '', $smallimage);                
+                $smalluploadPath = '/' . str_replace('\\', '/', $smalluploadPath);               
                 if(filesize($smallimage)){
                     $pathInfo = pathinfo($smallimage);
-
                     $modelFM::create([
                         'name'  =>  $pathInfo['basename'],
                         'link' =>  $smalluploadPath,

@@ -341,10 +341,10 @@ class MakeBuilder
                     $field['setup']['default'] = json_decode($field['setup']['default'], true);
                 }
                 //ZTX-N前端上传限制提示
-                $image_height = $field['setup']['image_height'] ?? ""; $image_height = $image_height ? "高度限制：" . $image_height . "px。" : "";
-                $image_width = $field['setup']['image_width'] ?? ""; $image_width = $image_width ? "宽度限制：" . $image_width . "px。" : "";
-                $image_size = $field['setup']['image_size'] ?? ""; $image_size = $image_size ? "大小限制：" . $image_size . "KB。" : "";
-                $image_type = $field['setup']['image_type'] ?? ""; $image_type = $image_type ? "类型限制：" . $image_type . "。" : "";
+                $image_height = $field['setup']['height'] ?? ""; $image_height = $image_height ? "高度限制：" . $image_height . "px。" : "";
+                $image_width = $field['setup']['width'] ?? ""; $image_width = $image_width ? "宽度限制：" . $image_width . "px。" : "";
+                $image_size = $field['setup']['fileSize'] ?? ""; $image_size = $image_size ? "大小限制：" . $image_size . "KB。" : "";
+                $image_type = $field['setup']['fileExt'] ?? ""; $image_type = $image_type ? "类型限制：" . $image_type . "。" : "";
                  //ZTX-N前端上传限制提示
                 $columns[] = [
                     $field['type'],                       // 类型

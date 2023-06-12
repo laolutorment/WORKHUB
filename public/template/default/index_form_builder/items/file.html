@@ -4,7 +4,7 @@
         <input class="form-control" type="text" id="{$form[type].name}" name="{$form[type].name}" value="{$form[type].value}" placeholder="{$form[type].placeholder}" {$form[type].extra_attr|raw}>
         {notempty name="form[type].tips"}
         <small class="text-muted">
-            <i class="fa fa-info-circle"></i> {$form[type].tips|raw}
+            <i class="fa fa-info-circle"></i>{$form[type].tips|raw}
         </small>
         {/notempty}
         <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-7 dd_ts dd_ts_img">
@@ -19,6 +19,6 @@
    
 </div>
 <script type="text/javascript">
-    webupload('fileList_{$form[type].name}', 'filePicker_{$form[type].name}', '{$form[type].name}_preview', '{$form[type].name}', false, '{$system.upload_file_ext|default=""}', '{$system.upload_file_size|default="0"}', 'file');
+    webupload('fileList_{$form[type].name}', 'filePicker_{$form[type].name}', '{$form[type].name}_preview', '{$form[type].name}', false, '{$system.upload_file_ext|default=""}', '{$system.upload_file_size|default="0"}', 'file','{$form[type].name}');
 </script>
 

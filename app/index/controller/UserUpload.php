@@ -41,7 +41,6 @@ use think\facade\Log;
 
 // 引入表格和表单构建器
 use app\common\builder\FormBuilder;
-use app\common\builder\TableBuilder;
 use app\common\facade\MakeBuilder;
 
 
@@ -83,7 +82,9 @@ class UserUpload extends Base
             'title'       => $this->system['title'] ?: $this->system['name'], // 网站标题
             'keywords'    => $this->system['key'],                            // 网站关键字
             'description' => $this->system['des'],                            // 网站描述         
-            'userupload_id' =>$userupload_id
+            'userupload_id' =>$userupload_id,
+            'model_name' =>$this->modelName,
+            'uploadDir' =>$this->userupload['upload_file']
         ]);
     }
 

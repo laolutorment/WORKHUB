@@ -811,10 +811,10 @@
     <!-- ZTX-N加上前端上传限制 -->
     <tr>
         <td>高度限制</td>
-        <td><input type="text" class="form-control" name="setup[image_height]"
-                   value="{$fieldInfo.setup.image_height ?? ''}"/>                
+        <td><input type="text" class="form-control" name="setup[height]"
+                   value="{$fieldInfo.setup.height ?? ''}"/>                
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,单位为px
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,格式为逗号隔开的两个数值范围，如“0,500”单位为px
                 </small>
             </td>
                  
@@ -822,27 +822,27 @@
    
     <tr>
         <td>宽度限制</td>
-        <td><input type="text" class="form-control" name="setup[image_width]"
-                   value="{$fieldInfo.setup.image_width ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[width]"
+                   value="{$fieldInfo.setup.width ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,单位为px
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,格式为逗号隔开的两个数值范围，如“0,500”单位为px
                 </small>
                 </td>
     </tr>
    
     <tr>
         <td>大小限制</td>
-        <td><input type="text" class="form-control" name="setup[image_size]"
-                   value="{$fieldInfo.setup.image_size ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileSize]"
+                   value="{$fieldInfo.setup.fileSize ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，,单位为KB
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，单位为KB
                 </small></td>
     </tr>
    
     <tr>
         <td>类型限制</td>
-        <td><input type="text" class="form-control" name="setup[image_type]"
-                   value="{$fieldInfo.setup.image_type ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileExt]"
+                   value="{$fieldInfo.setup.fileExt ?? ''}"/>
                    <small class="text-muted">
                     <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，多个类型用逗号隔开
                 </small>
@@ -902,10 +902,10 @@
     <!-- ZTX-N加上前端上传限制 -->
     <tr>
         <td>高度限制</td>
-        <td><input type="text" class="form-control" name="setup[image_height]"
-                   value="{$fieldInfo.setup.image_height ?? ''}"/>                
+        <td><input type="text" class="form-control" name="setup[height]"
+                   value="{$fieldInfo.setup.height ?? ''}"/>                
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,单位为px
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,格式为逗号隔开的两个数值范围，如“0,500”单位为px
                 </small>
             </td>
                  
@@ -913,27 +913,27 @@
    
     <tr>
         <td>宽度限制</td>
-        <td><input type="text" class="form-control" name="setup[image_width]"
-                   value="{$fieldInfo.setup.image_width ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[width]"
+                   value="{$fieldInfo.setup.width ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,单位为px
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效,格式为逗号隔开的两个数值范围，如“0,500”单位为px
                 </small>
                 </td>
     </tr>
    
     <tr>
         <td>大小限制</td>
-        <td><input type="text" class="form-control" name="setup[image_size]"
-                   value="{$fieldInfo.setup.image_size ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileSize]"
+                   value="{$fieldInfo.setup.fileSize ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，,单位为KB
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，单位为KB
                 </small></td>
     </tr>
    
     <tr>
         <td>类型限制</td>
-        <td><input type="text" class="form-control" name="setup[image_type]"
-                   value="{$fieldInfo.setup.image_type ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileExt]"
+                   value="{$fieldInfo.setup.fileExt ?? ''}"/>
                    <small class="text-muted">
                     <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，多个类型用逗号隔开
                 </small>
@@ -992,17 +992,17 @@
    <!-- ZTX-N加上前端上传限制 -->
     <tr>
         <td>大小限制</td>
-        <td><input type="text" class="form-control" name="setup[image_size]"
-                   value="{$fieldInfo.setup.image_size ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileSize]"
+                   value="{$fieldInfo.setup.fileSize ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，,单位为KB
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，单位为KB
                 </small></td>
     </tr>
    
     <tr>
         <td>类型限制</td>
-        <td><input type="text" class="form-control" name="setup[image_type]"
-                   value="{$fieldInfo.setup.image_type ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileExt]"
+                   value="{$fieldInfo.setup.fileExt ?? ''}"/>
                    <small class="text-muted">
                     <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，多个类型用逗号隔开
                 </small>
@@ -1060,17 +1060,17 @@
   <!-- ZTX-N加上前端上传限制 -->
     <tr>
         <td>大小限制</td>
-        <td><input type="text" class="form-control" name="setup[image_size]"
-                   value="{$fieldInfo.setup.image_size ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileSize]"
+                   value="{$fieldInfo.setup.fileSize ?? ''}"/>
                    <small class="text-muted">
-                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，,单位为KB
+                    <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，单位为KB
                 </small></td>
     </tr>
    
     <tr>
         <td>类型限制</td>
-        <td><input type="text" class="form-control" name="setup[image_type]"
-                   value="{$fieldInfo.setup.image_type ?? ''}"/>
+        <td><input type="text" class="form-control" name="setup[fileExt]"
+                   value="{$fieldInfo.setup.fileExt ?? ''}"/>
                    <small class="text-muted">
                     <i class="fa fa-info-circle"></i>仅在前台上传设置中起效，多个类型用逗号隔开
                 </small>

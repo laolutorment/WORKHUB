@@ -222,7 +222,8 @@ class Base extends Model
             }
             $result = self::create($data);
             if ($result) {
-                return ['error' => 0, 'msg' => '添加成功'];
+                //模型插入的时候返回插入的记录的id
+                return ['error' => 0, 'msg' => '添加成功','id'=>$result['id']];               
             } else {
                 return ['error' => 1, 'msg' => '添加失败'];
             }

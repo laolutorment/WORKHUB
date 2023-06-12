@@ -50,7 +50,7 @@
      * @param size            大小限制
      * @param type            上传类型[file/img]
      */
-    function webupload(list, filePicker_image, image_preview, image, more, upload_allowext, size, type) {
+    function webupload(list, filePicker_image, image_preview, image, more, upload_allowext, size, type,field_name) {
         if (upload_allowext) {
             upload_allowext = upload_allowext.replace(/\|/g, ",");
         }
@@ -59,22 +59,20 @@
         } else {
             size = 10240 * 1024 * 1024;
         }
-        type = type || 'img';
-	
-		//ZTX-005重新设置上传文件目录
-		var pathName = window.document.location.pathname;//获取网址目录
-		var pos = pathName.lastIndexOf('/');//获取斜杠的最后位置
-		var path = encodeURI(pathName.substr(1,pos));//获取地址目录
+        type = type;	
+		var path ='{$uploadDir|default=$model_name}';//获取地址目录
 		//ZTX-005重新设置上传文件目录
         var $list = $("#" + list + "");                                // 这几个初始化全局的百度文档上没说明
         var GUID = WebUploader.Base.guid();                            // 一个GUID
-		
+        var model_name = '{$model_name}';                               //设置对应的模型
+        var field_name = field_name;                     
+		 
         var uploader = WebUploader.create({
 		// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作,并开启允许重复上传
 			duplicate :true,
             auto: true,                                                // 选完文件后，是否自动上传。
             swf: '/static/plugins/webuploader-0.1.5/uploader.swf',     // 加载swf文件，路径一定要对
-            server: '{:url("upload/index")}' + '?upload_type=' + type+'&path='+path, // 文件接收服务端//ZTX-004重新设置上传文件目录：“+'&path='+path”
+            server: '{:url("upload/index")}' + '?upload_type=' + type+'&path='+path+'&modelName='+model_name+'&fieldName='+field_name, // 文件接收服务端//ZTX-004重新设置上传文件目录：“+'&path='+path”
 			
             pick: '#' + filePicker_image,                              // 选择文件的按钮。可选。
             resize: false,                                             // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
@@ -83,7 +81,8 @@
             threads: 1,                                                // 上传并发数
             formData: {
                 // 由于Http的无状态特征，在往服务器发送数据过程传递一个进入当前页面是生成的GUID作为标示
-                GUID: GUID,                                            // 自定义参数
+                GUID: GUID,  
+                token: '{$upload_token}'                                          // token验证
             },
             compress: false,
             fileSingleSizeLimit: size,                                 // 限制大小200M，单文件
@@ -112,7 +111,7 @@
         uploader.on('uploadSuccess', function (file, response) {
             if (response.code == 0) {
                 $.modal.alertError(response.msg);
-            }
+            }else{
             var url = response.url;
             if (more == true) {
 			// <!-- ZTX-004 设置图片预览   by WORKHUB -->
@@ -162,6 +161,7 @@
                 $("#" + image_preview).parent("a").attr('href', url);
 			
             }
+        }
         });
         uploader.on('uploadComplete', function (file) {
         //   <!-- ZTX-001-WORKHUB：当多个文件上传完成后，原代码把“.progress”元素设置成隐藏，导致第二个文件上传以后的进度条无法显示。 -->
@@ -415,7 +415,7 @@
 	
 	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 	$(document).on('click', '.remove_images', function () {
-    var file = $(this).parent().parent().parent().find(":first-child").val();
+    var file = $(this).parent().parent().parent().find(":first-child").find(":first-child").val();
     var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
     var remove = $(this).parent().parent().parent();
 	layer.confirm("是否删除原文件",{
@@ -425,7 +425,10 @@
 	}, function (index) {
 	//第一个按钮运行的函数，传递index（当前层）参数
 		// 删除服务器上的文件
+        console.log(file);
+        console.log(file_type);
 		if (file=='') {
+           
 				remove.remove();
             }
 			else{

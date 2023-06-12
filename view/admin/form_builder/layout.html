@@ -178,7 +178,7 @@
 	
 	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
 	$(document).on('click', '.remove_images', function () {
-    var file = $(this).parent().parent().parent().find(":first-child").val();
+    var file = $(this).parent().parent().parent().find(":first-child").find(":first-child").val();
     var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
     var remove = $(this).parent().parent().parent();
 	layer.confirm("是否删除原文件",{
