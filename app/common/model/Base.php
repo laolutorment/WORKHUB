@@ -50,10 +50,10 @@ class Base extends Model
     {
         $model = new static();
         $model = $model->alias($model->getName());
-        
+        Log::info('模型名'.$model->getName());
         // 获取with关联
         $moduleId  = \app\common\model\Module::where('model_name', $model->getName())->value('id');
-        $fileds    = \app\common\model\Field::where('module_id', $moduleId)
+        $fileds    = \app\common\model\SField::where('module_id', $moduleId)
             ->select()
             ->toArray();
         $listInfo  = [];  // 字段根据关联信息重新赋值

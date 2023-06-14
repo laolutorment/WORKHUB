@@ -42,10 +42,10 @@ class Field extends Base
     protected $validate = 'field';
 
     // 当前主表
-    protected $tableName = 'field';
+    protected $tableName = 's_field';
 
     // 当前主模型
-    protected $modelName = 'Field';
+    protected $modelName = 'SField';
 
     // 列表
     public function index()
@@ -122,7 +122,7 @@ class Field extends Base
                 View::assign(Request::param());
                 // 传递field说明是编辑字段,编辑字段需要调取当前字段的配置信息
                 if (!empty($field)) {
-                    $fieldInfo          = \app\common\model\Field::where('module_id', $moduleId)
+                    $fieldInfo          = \app\common\model\SField::where('module_id', $moduleId)
                         ->where('field', '=', $field)
                         ->find();
                     $fieldInfo['setup'] = string2array($fieldInfo['setup']);
@@ -150,7 +150,7 @@ class Field extends Base
                 $this->error($result);
             }
             // 查询字段是否已录入
-            $hasIn = \app\common\model\Field::where('field', $data['field'])
+            $hasIn = \app\common\model\SField::where('field', $data['field'])
                 ->where('module_id', $data['module_id'])
                 ->count();
             if ($hasIn) {
@@ -169,7 +169,7 @@ class Field extends Base
             if (isset($data['setup'])) {
                 $data['setup'] = array2string($data['setup']);
             }
-            $model = Db::name('field');
+            $model = Db::name($this->tableName);
             if ($model->insert($data) !== false) {
                 // 数据库已存在字段时不再执行字段操作
                 if (isset($addfieldsql) && !empty($addfieldsql)) {
@@ -221,7 +221,7 @@ class Field extends Base
             $groups[$k]['group_name'] = $v['group_name'];
         }
 
-        $fieldInfo = \app\common\model\Field::where('id', '=', $id)->find();
+        $fieldInfo = \app\common\model\SField::where('id', '=', $id)->find();
         if ($fieldInfo['setup']) {
             $fieldInfo['setup'] = string2array($fieldInfo['setup']);
         }
@@ -274,7 +274,7 @@ class Field extends Base
             if (array_key_exists("setup", $data) && $data['setup']) {
                 $data['setup'] = array2string($data['setup']);
             }
-            $model = Db::name('field');
+            $model = Db::name($this->tableName);
 
             // ZTX-修复关联模型时列表读取错误
             if($data['data_source']=='2'){

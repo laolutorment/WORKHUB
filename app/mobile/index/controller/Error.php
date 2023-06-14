@@ -28,7 +28,7 @@ namespace app\index\controller;
 
 use app\common\facade\Cms;
 use app\common\model\Cate;
-use app\common\model\Field;
+use app\common\model\SField;
 use app\common\model\Module;
 
 use think\facade\Db;
@@ -54,7 +54,7 @@ class Error extends Base
         // 当前表名称
         $this->tableName = Module::where('id', '=', $this->moduleId)->value('table_name');
         // 当前模型字段列表
-        $this->fields = Field::getFieldList($this->moduleId);
+        $this->fields = SField::getFieldList($this->moduleId);
     }
 
     // 列表

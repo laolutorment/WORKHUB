@@ -27,7 +27,7 @@
 
 namespace app\common\builder;
 
-use app\common\model\Field;
+use app\common\model\SField;
 use app\common\model\Module;
 use think\facade\Log;
 use think\facade\Request;
@@ -62,13 +62,13 @@ class MakeBuilder
 
         if(!empty($custom_field_ids)){
             //根据已知的字段ID来获取字段
-            $fields = Field::whereIn('id', $custom_field_ids)
+            $fields = SField::whereIn('id', $custom_field_ids)
             ->order(['sort' => 'asc', 'id' => 'asc'])
             ->select()
             ->toArray();
         }else{
             // 根据模块ID获取所有字段
-        $fields = Field::where('module_id', $module['id'])
+        $fields = SField::where('module_id', $module['id'])
         ->order(['sort' => 'asc', 'id' => 'asc'])
         ->select()
         ->toArray();
@@ -675,7 +675,7 @@ class MakeBuilder
                 $moduleId = \app\common\model\Module::where('model_name', $field['relation_model'])->value('id');
                 if ($moduleId) {
                     // 查询字段名称
-                    $fieldArr = \app\common\model\Field::where("field = 'pid' OR field = 'parent_id' ")->where('module_id', $moduleId)->field('field')->find();
+                    $fieldArr = \app\common\model\SField::where("field = 'pid' OR field = 'parent_id' ")->where('module_id', $moduleId)->field('field')->find();
                     if ($fieldArr) {
                         $fieldPid = ',' . $fieldArr['field'];
                     }
@@ -708,7 +708,7 @@ class MakeBuilder
                         }else{
                             $id = Request::param('id');
                             $module_id  = \app\common\model\UserUpload::where('id', $id)->value('module_r');
-                            $result = \app\common\model\Field::where('module_id', $module_id)
+                            $result = \app\common\model\SField::where('module_id', $module_id)
                             ->where('type', '<>', 'hidden')
                             ->column('name,required', 'id');
                         }
@@ -735,7 +735,7 @@ class MakeBuilder
         $pk = $model->pk ?? 'id';
         // 是否有排序字段
        
-        $sortField = \app\common\model\Field::where('module_id', $model->id)->where('field', 'sort')->find();
+        $sortField = \app\common\model\SField::where('module_id', $model->id)->where('field', 'sort')->find();
         if ($sortField) {
             $order = 'sort ASC,' . $pk . ' DESC';
         } else {
@@ -922,6 +922,9 @@ class MakeBuilder
 
         // 查询模块信息
         $module = \app\common\model\Module::where('model_name', $modelName)->find();
+        Log::info($modelName); 
+        Log::info($module);
+
         // 查询字段信息
         $fields = self::getFields($module->table_name);
         if (empty($fields)) {
@@ -1120,7 +1123,7 @@ class MakeBuilder
             return false;
         }
         // 查询该表是否存在关联的字段
-        $fileds = \app\common\model\Field::where('module_id', $module->id)
+        $fileds = \app\common\model\SField::where('module_id', $module->id)
             ->where('data_source', 2)
             ->select()
             ->toArray();
@@ -1166,7 +1169,7 @@ class MakeBuilder
             return false;
         }
         // 查询该表是否存在关联的字段
-        $fields = \app\common\model\Field::where('module_id', $module->id)
+        $fields = \app\common\model\SField::where('module_id', $module->id)
             ->select()
             ->toArray();
         $rules  = [];

@@ -447,7 +447,7 @@ abstract class Base
             $tem = 'info';
             foreach ($info as $k => $v) {
                 //获取字段信息
-                $column =  \app\common\model\Field::where('module_id',  $module_id)->where('field', $k)->find();
+                $column =  \app\common\model\SField::where('module_id',  $module_id)->where('field', $k)->find();
                 // 当数据来源为系统字典时，从系统字典中获取数据的值
                 if ($column['data_source'] == 1) {
                     $value = \app\common\model\Dictionary::where('dict_type', $column['dict_code'])->where('dict_value', $v)->value('dict_label');
@@ -509,7 +509,7 @@ abstract class Base
                 ];
                 foreach ($info as $k => $v) {
                     //获取字段信息
-                    $column =  \app\common\model\Field::where('module_id',  $module_id)->where('field', $k)->find();
+                    $column =  \app\common\model\SField::where('module_id',  $module_id)->where('field', $k)->find();
 
                     if ($column['group_id'] == $v_group['id']) {
                         // 当数据来源为系统字典时，从系统字典中获取数据的值

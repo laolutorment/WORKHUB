@@ -32,7 +32,7 @@ use think\facade\Request;
 // 引入构建器
 use app\common\facade\MakeBuilder;
 
-class Field extends Base
+class SField extends Base
 {
     // 开启自动写入时间戳字段
     protected $autoWriteTimestamp = false;
@@ -72,7 +72,7 @@ class Field extends Base
                 $list[$k]['dict_code'] = $v->dictionaryType->getData('dict_name');
             }
         }
-        return MakeBuilder::changeTableData($list, 'Field');
+        return MakeBuilder::changeTableData($list, 'SField');
     }
 
     // 获取模型对应的字段信息

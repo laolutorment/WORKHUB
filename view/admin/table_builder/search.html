@@ -17,7 +17,7 @@
                             {// 多级联动 }
                             {php}
                                 // 获取字段信息
-                                $filedInfo = \app\common\model\Field::where('id', $search['field_id'])->find();
+                                $filedInfo = \app\common\model\SField::where('id', $search['field_id'])->find();
                                 $filedInfo['setup'] = string2array($filedInfo['setup']);
                                 $setupFields = explode(',', $filedInfo['setup']['fields']);
 

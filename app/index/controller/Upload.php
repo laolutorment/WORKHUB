@@ -52,7 +52,7 @@ class Upload extends Base
         $this->uploadMainDir = Request::param('path');
         //生成自定义规则
         $modul_id = \app\common\model\Module::where('model_name',Request::param('modelName'))->value('id');
-        $fields_setup = \app\common\model\Field::where('module_id',$modul_id)->where('field',Request::param('fieldName'))->value('setup');        
+        $fields_setup = \app\common\model\SField::where('module_id',$modul_id)->where('field',Request::param('fieldName'))->value('setup');        
         $fields_setup = string2array($fields_setup); 
         $fields_setup_rules = [];
         if(!empty($fields_setup['fileExt'])){

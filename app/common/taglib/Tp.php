@@ -293,7 +293,7 @@ class Tp extends TagLib
                 // 查询模型
                 $__MODULE__ = \app\common\model\Module::find($__MODULEID__);
                 // 查询tag字段名称
-                $__TAGFIELD__ = \app\common\model\Field::where(\'module_id\', $__MODULEID__)
+                $__TAGFIELD__ = \app\common\model\SField::where(\'module_id\', $__MODULEID__)
                     ->where(\'type\', \'tag\')
                     ->value(\'field\');
                 // 当前模型

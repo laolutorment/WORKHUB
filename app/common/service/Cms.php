@@ -240,7 +240,7 @@ class Cms
             $moduleId = \app\common\model\Cate::where('id', Request::param('cate_id'))->value('module_id');
 
             // 查询该模型所有必填字段
-            $fields = \app\common\model\Field::where('module_id', $moduleId)->select()->toArray();
+            $fields = \app\common\model\SField::where('module_id', $moduleId)->select()->toArray();
             foreach ($fields as $k => $v) {
                 // 必填项判断
                 if (isset($data[$v['field']]) && $v['required'] == 1 && $data[$v['field']] === '') {
@@ -276,7 +276,7 @@ class Cms
                         $email = $system['email'];
                         $title = lang('email title');
                         // 拼接内容
-                        $fields  = \app\common\model\Field::where('module_id', $moduleId)->select();
+                        $fields  = \app\common\model\SField::where('module_id', $moduleId)->select();
                         $content = '';
                         foreach ($fields as $k => $v) {
                             if (isset($data[$v['field']])) {

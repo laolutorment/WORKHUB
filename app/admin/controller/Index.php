@@ -155,7 +155,7 @@ class Index extends Base
     public function select2(int $id, string $keyWord = '', string $rows = '10', string $value = '')
     {
         // 字段信息
-        $field = \app\common\model\Field::find($id);
+        $field = \app\common\model\SField::find($id);
         if (is_null($field) || empty($field['relation_model']) || empty($field['relation_field'])) {
             return [];
         }

@@ -44,7 +44,7 @@ class Module extends Base
     // 一对多获取字段信息
     public function fields()
     {
-        return $this->hasMany('Field', 'module_id');
+        return $this->hasMany('SField', 'module_id');
     }
 
     // 获取列表
@@ -482,7 +482,7 @@ class Module extends Base
                     ];
                 }
             }
-            $fild = new Field();
+            $fild = new SField();
             $fild->saveAll($data);
             return true;
         } else {
@@ -665,7 +665,7 @@ class Module extends Base
                 ];
             }
 
-            $fild = new Field();
+            $fild = new SField();
             $fild->saveAll($data);
             return true;
         }
@@ -692,7 +692,7 @@ class Module extends Base
                     return $e->getMessage();
                 }
                 // 更改字段信息
-                $fieldInfo = \app\common\model\Field::where('module_id', $module['id'])
+                $fieldInfo = \app\common\model\SField::where('module_id', $module['id'])
                     ->where('field', '=', $module['pk'])
                     ->find();
                 if ($fieldInfo) {

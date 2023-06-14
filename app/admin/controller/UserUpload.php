@@ -47,7 +47,7 @@ class UserUpload extends Base
     public function changeText()
     {
        if (Request::isPost()) {  
-           $field_list = \app\common\model\Field::where('module_id','=',$_POST['module_id'])->select()->toArray();
+           $field_list = \app\common\model\SField::where('module_id','=',$_POST['module_id'])->select()->toArray();
            $data = [];
            foreach($field_list as $k=>$v){
             if($v['type']!='hidden'){  

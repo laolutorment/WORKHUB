@@ -308,7 +308,7 @@ class Module extends Base
     private function delModuleField(string $id)
     {
         strpos($id, ',') !== false ? $op = 'in' : $op = '=';
-        return \app\common\model\Field::where('module_id', $op, $id)->delete();
+        return \app\common\model\SField::where('module_id', $op, $id)->delete();
     }
 
     // 添加页额外JS

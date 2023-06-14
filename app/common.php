@@ -74,7 +74,7 @@ function getShowUrl($v)
 function changeFields($list, $moduleId)
 {
     // 根据模型ID查询字段信息
-    $fields     = \app\common\model\Field::with(['module', 'dictionaryType'])->where('module_id', '=', $moduleId)
+    $fields     = \app\common\model\SField::with(['module', 'dictionaryType'])->where('module_id', '=', $moduleId)
         ->select()
         ->toArray();
     $optionsArr = [];
@@ -101,7 +101,7 @@ function changeFields($list, $moduleId)
  */
 function changeField($info, $moduleId, $optionsArr)
 {
-    $fields = \app\common\model\Field::with(['module', 'dictionaryType'])->where('module_id', '=', $moduleId)
+    $fields = \app\common\model\SField::with(['module', 'dictionaryType'])->where('module_id', '=', $moduleId)
         ->select()
         ->toArray();
     foreach ($fields as $k => $v) {

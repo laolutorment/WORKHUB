@@ -209,7 +209,7 @@ class Database extends Base
             $columns_checkbox = [];
             $checkbox_value = [];
             foreach ($columns as $k => $v) {
-                $checkbox_title = \app\common\model\Field::where('field', $v['Field'])->where('module_id', $module_id)->value('name');
+                $checkbox_title = \app\common\model\SField::where('field', $v['Field'])->where('module_id', $module_id)->value('name');
                 $checkbox_title = $checkbox_title . '(' . $v['Field'] . ')';
                 $checkbox_value[] = $v['Field'];
                 $columns_checkbox[$v['Field']] = $checkbox_title;
@@ -538,7 +538,7 @@ class Database extends Base
             $columns_checkbox = [];
             $checkbox_value = [];
             foreach ($columns as $k => $v) {
-                $checkbox_title = \app\common\model\Field::where('field', $v['Field'])->value('name');
+                $checkbox_title = \app\common\model\SField::where('field', $v['Field'])->value('name');
                 $checkbox_title = $checkbox_title . '(' . $v['Field'] . ')';
                 $checkbox_value[] = $v['Field'];
                 $columns_checkbox[$v['Field']] = $checkbox_title;

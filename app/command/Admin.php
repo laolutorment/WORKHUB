@@ -51,7 +51,7 @@ class Admin extends Command
                 $module = $module->toArray();
                 $prefix = \think\facade\Config::get('database.connections.mysql.prefix');
                 foreach ($module as $k => $v) {
-                    \app\common\model\Field::where('module_id', $v['id'])->delete();
+                    \app\common\model\SField::where('module_id', $v['id'])->delete();
                     \app\common\model\AuthRule::where('name', $v['model_name'])->whereOr('name', 'like', $v['model_name'] . '/%')->delete();
                     \app\common\model\Module::where('table_name', 'in', $tableName)->delete();
                     $this->dirDelete($rootPath . 'app' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . $v['model_name'] . '.php');
