@@ -176,7 +176,7 @@ class UserUpload extends Base
                     $upload_log = [
                         'user'=>$this->userId??'1',
                         'upload_project' =>Request::param('userupload_id'),
-                        'upload_module'=>$data['module_r'],
+                        'upload_module'=>$this->userupload['module_r'],
                         'upload_time'=>time(),
                         'upload_ip'=>Request::ip(),
                         'upload_id'=>$result['id'],
