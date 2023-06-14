@@ -161,8 +161,7 @@ class UserUpload extends Base
         if (empty($token) || $token !== Session::get('upload_token')) {
              // 验证失败 输出错误信息
              $this->error("非法上传");
-        }
-                 
+        }                 
              $data   = MakeBuilder::changeFormData(Request::except(['file'], 'post'), $this->tableName);
              $result = $this->admin_validate($data, $this->validate);
              if (true !== $result) {
@@ -174,7 +173,23 @@ class UserUpload extends Base
                  if ($result['error']) {
                      $this->error($result['msg']);
                  } else {
-                     $this->success($result['msg'], 'index');
+                    $upload_log = [
+                        'user'=>$this->userId??'1',
+                        'upload_project' =>Request::param('userupload_id'),
+                        'upload_module'=>$this->modelName,
+                        'upload_time'=>time(),
+                        'upload_ip'=>Request::ip(),
+                        'upload_id'=>$result['id'],
+                        'upload_remark'=>Request::param('upload_remark')??''
+                    ];
+                    //上传成功后记录上传日志
+                    $result_s = \app\common\model\UploadRecord::addPost($upload_log);
+                    if ($result_s['error']) {
+                        $this->error($result_s['msg']);
+                    }else{
+                        $this->success($result['msg'], 'index');
+                    }
+                     
                  }
              }
          }
