@@ -215,7 +215,7 @@
 <!-- SIYUCMS -->
 <link rel="stylesheet" href="/static/plugins/AdminLTE/dist/css/siyucms.css?v=20211203">
 <script src="/static/plugins/siyu-ui.js?v=20211203"></script>
-<script src="/static/plugins/siyucms.js?v=20211203"></script>
+<script src="/static/plugins/siyucms_index.js?v=20211203"></script>
 <!-- jQuery-ui ZTX-005-->
 <link rel="stylesheet" href="/static/plugins/jquery-ui-1.13.1.custom/jquery-ui.css">
 <link rel="stylesheet" href="/static/plugins/jquery-ui-1.13.1.custom/jquery-ui.structure.css">
@@ -230,7 +230,7 @@
 }
   </style>
 </head>
-<body>
+<body data-display_mode="1">
 <!--内容开始-->
 <section class="content">
     {// 额外CSS代码 }
@@ -369,6 +369,24 @@
                     {/switch}
                     {/volist}
                     <!---->
+                    <!-- 验证码 -->
+                    {if $system.message_code}
+                    <div class="row dd_input_group no-gutters " id="div_message_code">
+                        <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label is-required" for="message_code">验证码</label>
+                        <div class="clearfix"></div>
+                        <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
+                         <input class="form-control" type="text" id="message_code" name="message_code" value="" placeholder="请输入验证码" autocomplete="off">
+                         <img src="{:url('index/captcha')}" title="点击切换验证码">
+                          </div>
+                       
+                    </div>
+                    <script>
+                        //刷新验证码操作
+                        $("#div_message_code img").click(function(){
+                            $(this).attr("src",$(this).attr("src")+'?'+Math.random());
+                        })
+                    </script>
+                    {/if}
                     <!--底部提示-->
             {notempty name="page_tips_bottom"}
             <div class="row dd_input_group no-gutters" >
@@ -408,9 +426,6 @@
             {$extra_js|raw|default=''}
 			
 	<script>
-	
-	
-	
 	
 	
 	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
@@ -607,7 +622,8 @@ if($( '[name="site_img_choose"]' ).length >0 ){
 <link rel="stylesheet" href="/static/plugins/jquery-treegrid/css/jquery.treegrid.css">
 <script src="/static/plugins/jquery-treegrid/js/jquery.treegrid.js"></script>
 <script src="/static/plugins/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
-
+<!-- pjax -->
+<script src="/static/plugins/AdminLTE/plugins/pjax/jquery.pjax.js"></script>
 
 	
 </html>

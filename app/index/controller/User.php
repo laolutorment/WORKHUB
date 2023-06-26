@@ -179,7 +179,7 @@ class User extends Base
         if ($result['error'] == 1) {
             $this->error($result['msg']);
         } else {
-            $this->success($result['msg'], 'index');
+            $this->success($result['msg'],'index');
         }
     }
 

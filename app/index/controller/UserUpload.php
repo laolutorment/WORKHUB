@@ -58,7 +58,8 @@ class UserUpload extends Base
     private $userupload; 
     //上传的$token验证
     private $token; 
-    
+
+  
         
     // 初始化
     public function initialize()
@@ -68,7 +69,7 @@ class UserUpload extends Base
         if(!empty(Request::param('userupload_id'))){
             $userupload_id =  Request::param('userupload_id');
         }else{
-            $this->error('未选择活动');
+            $this->adminError('未选择活动');
         }
         
         $this->userupload = \app\common\model\UserUpload::where('id', $userupload_id)->find(); 
@@ -156,12 +157,21 @@ class UserUpload extends Base
      public function addPost()
      {
         if (Request::isPost()) {
+            // 验证码
+        $message_code = $this->system['message_code'];
+        if ($message_code) {
+            if (!captcha_check(input("post.message_code"))) {
+                $this->error(lang('captcha error'));
+            }
+        }
         //来源认证判断
         $token = isset($_POST['upload_token']) ? $_POST['upload_token'] : '';       
         if (empty($token) || $token !== Session::get('upload_token')) {
-             // 验证失败 输出错误信息
-             $this->error("非法上传");
-        }                 
+             // 验证失败 输出错误信息            
+             $this->error("非法上传，请刷新");                        
+        } else{
+            //销毁upload_token
+            Session::delete('upload_token');        }                
              $data   = MakeBuilder::changeFormData(Request::except(['file'], 'post'), $this->tableName);
              $result = $this->admin_validate($data, $this->validate);
              if (true !== $result) {
@@ -187,7 +197,7 @@ class UserUpload extends Base
                     if ($result_s['error']) {
                         $this->error($result_s['msg']);
                     }else{
-                        $this->success($result['msg'], 'index');
+                        $this->adminSuccess($result['msg']);
                     }
                      
                  }

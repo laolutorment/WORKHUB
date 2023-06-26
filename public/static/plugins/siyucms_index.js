@@ -321,15 +321,17 @@ function formSubmit($this) {
         } else {
             // 普通提交跳转
             if (result.code == 1) {
-                // 提交成功
-                console.log(result);
+                // 提交成功               
                 $.modal.alertSuccess(result.msg, function (index) {
                     layer.close(index);                    
                     $.common.jump(result.url);
                 });
             } else {
                 // 提交失败
-                $.modal.alertError(result.msg);
+                $.modal.alertError(result.msg, function (index) {
+                    layer.close(index);                    
+                    $.common.jump(result.url);
+                });
             }
         }
     });

@@ -161,11 +161,9 @@ class Base extends Model
                         if ($hasManys) {
                             $list[$k][$vv['field']] = implode(',', $hasManys);
                         }
-                    } else {
-                        
+                    } else {                        
                         $list[$k][$vv['field']] = !empty($v->{$vv['relation_model']}) ? $v->{$vv['relation_model']}->getData($vv['relation_field']) : '';
-                       
-             
+                                   
                     }
                 }
             }

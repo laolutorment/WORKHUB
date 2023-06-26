@@ -1044,7 +1044,7 @@
             },
             // 跳转页
             jump: function (url) {
-                if ($('body').data('display_mode') == "1") {
+                if ($('body').data('display_mode') == "1") {                    
                     window.location.href = url;
                 } else {
                     $.pjax({url: url, container: '.content-wrapper'})

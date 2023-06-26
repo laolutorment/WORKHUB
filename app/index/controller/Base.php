@@ -217,6 +217,40 @@ abstract class Base
         throw new HttpResponseException($response);
     }
 
+     /**
+     * 操作错误跳转
+     * @param mixed   $msg    提示信息
+     * @param string  $url    跳转的URL地址
+     * @param mixed   $data   返回的数据
+     * @param integer $wait   跳转等待时间
+     * @param array   $header 发送的Header信息
+     * @return void
+     */
+    protected function adminError($msg = '', string $url = null, $data = '', int $wait = 3, array $header = []): Response
+    {
+        if (is_null($url)) {
+            $url = request()->isAjax() ? '' : 'javascript:history.back(-1);';
+        } elseif ($url) {
+            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url)->__toString();
+        }
+
+        $result = [
+            'code' => 0,
+            'msg'  => $msg,
+            'data' => $data,
+            'url'  => $url,
+            'wait' => $wait,
+        ];
+
+        $type = (request()->isJson() || request()->isAjax()) ? 'json' : 'html';
+        if ($type == 'html') {
+            $response = view(app('config')->get('app.dispatch_error_tmpl'), $result);
+        } else if ($type == 'json') {
+            $response = json($result);
+        }
+        throw new HttpResponseException($response);
+    }
+
     /**
      * 返回封装后的API数据到客户端
      * @param mixed   $data   要返回的数据
@@ -255,7 +289,7 @@ abstract class Base
         if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
             $url = $_SERVER["HTTP_REFERER"];
         } elseif ($url) {
-            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);
+            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);            
         }
 
         $result = [
@@ -275,4 +309,38 @@ abstract class Base
         throw new HttpResponseException($response);
     }
 
+    
+ /**
+     * 操作成功跳转
+     * @param mixed   $msg    提示信息
+     * @param string  $url    跳转的URL地址
+     * @param mixed   $data   返回的数据
+     * @param integer $wait   跳转等待时间
+     * @param array   $header 发送的Header信息
+     * @return void
+     */
+    protected function adminSuccess($msg = '', string $url = null, $data = '', int $wait = 3, array $header = []): Response
+    {
+        if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
+            $url = $_SERVER["HTTP_REFERER"];
+        } elseif ($url) {
+            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url, get_back_url())->__toString();
+        }
+
+        $result = [
+            'code' => 1,
+            'msg'  => $msg,
+            'data' => $data,
+            'url'  => $url,
+            'wait' => $wait,
+        ];
+
+        $type = (request()->isJson() || request()->isAjax()) ? 'json' : 'html';
+        if ($type == 'html') {
+            $response = view(app('config')->get('app.dispatch_success_tmpl'), $result);
+        } else if ($type == 'json') {
+            $response = json($result);
+        }
+        throw new HttpResponseException($response);
+    }
 }

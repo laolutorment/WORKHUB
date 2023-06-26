@@ -52,15 +52,7 @@ class Users extends Validate
         ],
         'mobile|手机' => [
             'max' => '20',
-        ],
-        'mobile_validated|手机验证' => [
-            'require' => 'require',
-            'max' => '3',
-        ],
-        'email_validated|邮箱验证' => [
-            'require' => 'require',
-            'max' => '3',
-        ],
+        ],       
         'type_id|所属分组' => [
             'require' => 'require',
             'max' => '3',
