@@ -98,7 +98,7 @@ class Admin extends Base
         } else {
             $check = Request::checkToken('__token__');
             if (false === $check) {
-                $data = ['error' => '2', 'msg' => '验证有误'];
+                $data = ['error' => '2', 'msg' => '页面过期'];
                 return json($data);
             }
             if ($result['status'] == 1) {
