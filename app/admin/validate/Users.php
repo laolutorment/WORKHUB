@@ -32,10 +32,19 @@ class Users extends Validate
     protected $rule = [
         'email|邮箱' => [
             'require' => 'require',
-            'max' => '100',
+            'max' => '100',  
+            'unique'=>'users'          
         ],
         'password|密码' => [
+            'require' => 'require',
             'max' => '100',
+            'min' => '8',
+        ],
+        'nick_name|姓名' => [
+            'require' => 'require',
+            'max' => '100',
+            'min' => '1',
+            'unique'=>'users'   
         ],
         'sex|性别' => [
             'require' => 'require',
@@ -51,7 +60,7 @@ class Users extends Validate
             'max' => '20',
         ],
         'mobile|手机' => [
-            'max' => '20',
+            'mobile'=>'mobile'
         ],       
         'type_id|所属分组' => [
             'require' => 'require',
@@ -63,5 +72,44 @@ class Users extends Validate
         'create_ip|注册IP' => [
             'max' => '15',
         ]
+    ];
+
+    public static $index_rule = [
+        'email|邮箱' => [
+            'require' => 'require',
+            'max' => '100',  
+            'unique'=>'users',
+            'email' => 'email',          
+        ],
+        'password|密码' => [
+            'require' => 'require',
+            'max' => '100',
+            'min' => '8',
+        ],
+        'nick_name|姓名' => [
+            'require' => 'require',
+            'max' => '100',
+            'min' => '1',
+            'unique'=>'users'   
+        ],
+        'sex|性别' => [
+            'require' => 'require',
+            'max' => '1',
+        ],       
+        'qq|QQ' => [
+            'max' => '20',
+        ],
+        'mobile|手机' => [
+            'require' => 'require',
+            'mobile'=>'mobile'
+        ],          
+        'type_id|所属分组' => [
+            'require' => 'require',
+            'max' => '3',
+        ],
+        'status|状态' => [
+            'require' => 'require',
+        ],
+        
     ];
 }

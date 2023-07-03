@@ -154,7 +154,8 @@ abstract class Base
     protected function admin_validate(array $data, $validate, array $message = [], bool $batch = false)
     {
         if (is_array($validate)) {
-            $v = new Validate();
+            $v = new Validate();           
+            $validate = new $validate();
             $v->rule($validate);
         } else {
             if (strpos($validate, '.')) {

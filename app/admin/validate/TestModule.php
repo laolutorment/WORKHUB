@@ -42,6 +42,7 @@ class TestModule extends Validate
         ],
         'student_id|学号' => [
             'require' => 'require',
+            'length' => '10,25',
         ],
         'work_name|作品名称' => [
             'require' => 'require',

@@ -30,6 +30,9 @@ use app\common\facade\Cms;
 use think\captcha\facade\Captcha;
 use think\facade\Request;
 use think\facade\View;
+use think\facade\Env;
+use think\facade\Db;
+use think\facade\Log;
 
 class Index extends Base
 {
@@ -118,4 +121,26 @@ class Index extends Base
     {
         return Captcha::create();
     }
+
+    public function uniqueCheck()
+     {
+        
+        $field = input('field'); // 获取字段名称
+        $value = input('value'); // 获取字段值
+        $table = input('table'); // 获取数据库表名       
+        $prefix = Env::get('DATABASE.PREFIX');    
+        Log::info($prefix);  
+        if($field && $table) {
+            // 查询数据库，判断email字段的唯一性
+            $user = Db::table( $prefix.$table)->where($field, $value)->find();           
+            if ($user) {
+                return 'false'; // 如果存在相同的email值，返回 false
+            } else {
+                return 'true'; // 如果email值唯一，返回 true
+            }
+        } else {
+            return 'Error'; // 如果请求参数不正确，返回错误信息
+        }
+    }
+
 }

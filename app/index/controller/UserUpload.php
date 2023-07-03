@@ -30,6 +30,8 @@ use AlibabaCloud\Client\Request\Request as RequestRequest;
 use think\facade\Request;
 use think\facade\Session;
 use think\facade\View;
+use ReflectionClass;
+
 // 引入框架内置类
 use think\App;
 use think\exception\HttpResponseException;
@@ -72,10 +74,10 @@ class UserUpload extends Base
             $this->adminError('未选择活动');
         }
         
-        $this->userupload = \app\common\model\UserUpload::where('id', $userupload_id)->find(); 
-        $this->validate = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');
+        $this->userupload = \app\common\model\UserUpload::where('id', $userupload_id)->find();       
         $this->tableName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('table_name');
-        $this->modelName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');        
+        $this->modelName = \app\common\model\Module::Where('id',$this->userupload['module_r'])->value('model_name');  
+        $this->validate ='\app\admin\validate\\' . $this->modelName;    
         View::assign([
             'cate'        => ['topid' => 0],                                  // 栏目信息
             'system'      => $this->system,                                   // 系统信息
@@ -95,9 +97,19 @@ class UserUpload extends Base
 
         $this->token =  Session::get('upload_token')?: bin2hex(random_bytes(16)); // 生成一个16字节的随机字符串
         //设置来源认证的upload_token参数
-        Session::set('upload_token',$this->token);        
+        Session::set('upload_token',$this->token);    
+        $className = $this->validate;
+        $rule = $className::$index_rule??[];
+        if(empty($rule)){
+        $reflectionClass = new ReflectionClass($className);
+        $reflectionProperty = $reflectionClass->getProperty('rule');
+        $reflectionProperty->setAccessible(true);
+        $rule = $reflectionProperty->getValue(new $className());
+         } 
+        $rules = generateFrontendRules($rule); 
         View::assign([           
-            'upload_token'=>$this->token,          
+            'upload_token'=>$this->token,  
+            'rules'=> $rules        
         ]);
 
         $userupload = $this->userupload;
@@ -146,6 +158,8 @@ class UserUpload extends Base
        $userupload['page_top_tips']?$builder->setPageTips($userupload['page_top_tips'], 'info', 'top'):"";
        //设置页面下端提示信息
        $userupload['page_end_tips']?$builder->setPageTips($userupload['page_end_tips'], 'info', 'bottom'):"";
+       //设置额外的前端代码
+       $userupload['extra_code']?$builder->setExtraJs($userupload['extra_code']):"";
        if ($hideShowAll) {
            $builder->hideShowAll();
        }
@@ -171,9 +185,17 @@ class UserUpload extends Base
              $this->error("非法上传，请刷新");                        
         } else{
             //销毁upload_token
-            Session::delete('upload_token');        }                
-             $data   = MakeBuilder::changeFormData(Request::except(['file'], 'post'), $this->tableName);
-             $result = $this->admin_validate($data, $this->validate);
+            Session::delete('upload_token');        }   
+            $formData =   Request::except(['file'], 'post');       
+             $data   = MakeBuilder::changeFormData($formData, $this->tableName);  
+            //  针对用户注册的专门设置
+            if( $this->modelName =='Users'){
+                $data['last_login_time'] = $data['create_time'] = time();
+                $data['create_ip']       = $data['last_login_ip'] = Request::ip();
+                $data['status']          = 0;
+            }
+            
+             $result = $this->admin_validate($formData, $this->validate);
              if (true !== $result) {
                  // 验证失败 输出错误信息
                  $this->error($result);
@@ -204,7 +226,7 @@ class UserUpload extends Base
              }
          }
      }
-
-   
+     
+     
     
 }

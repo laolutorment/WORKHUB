@@ -221,12 +221,20 @@
 <link rel="stylesheet" href="/static/plugins/jquery-ui-1.13.1.custom/jquery-ui.structure.css">
 <link rel="stylesheet" href="/static/plugins/jquery-ui-1.13.1.custom/jquery-ui.theme.css">
 <script src="/static/plugins/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+<!-- jquery-validation-1.19.5 -->
+<script src="/static/plugins/jquery-validation-1.19.5/dist/jquery.validate.js"></script>
+<script src="/static/plugins/jquery-validation-1.19.5/dist/localization/messages_zh.js"></script>
 <!-- 强制居中 -->
 <style>  
+/* 设置表单元素居中 */
 .col-12.form_builder > div {
   display: flex;
   justify-content: center;
   align-items: center;
+/* 设置错误提示信息文字颜色为红色 */
+  .error {
+  color: red;
+}
 }
   </style>
 </head>
@@ -242,7 +250,7 @@
            
            
             <!--数据表开始-->
-            <form name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
+            <form id="myForm" name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
                <!-- 添加来源认证$upload_token -->
                <input class="hide" id="upload_token" name="upload_token" value="{$upload_token}">
                <input class="hide" name="userupload_id" value="{$userupload_id}">
@@ -581,6 +589,55 @@ if($( '[name="site_img_choose"]' ).length >0 ){
 
 <!--内容结束-->
 </section>
+<script>
+   
+$(document).ready(function() {
+    var delayTimer; // 声明一个延迟验证的计时器
+     // 添加手机号验证规则
+    $.validator.addMethod("mobile", function(value, element) {
+        var phoneRegex = /^1[3-9]\d{9}$/;
+        return this.optional(element) || phoneRegex.test(value);
+    }, "请输入有效的手机号码");
+    // 添加唯一性验证规则
+    $.validator.addMethod("unique", function(value, element, param) {
+    var uniqueField = $(element);
+    var uniqueUrl = "/index/Index/uniqueCheck.html"; // 替换成实际的唯一性验证接口地址
+    // 构建请求参数，将字段名称和值作为参数传递给后端验证接口
+    var data = {};
+    data["field"] = element.name; // 字段名称
+    data["value"] = value; // 字段值
+    data["table"] = param; // 数据库表名
+    // 发送异步请求进行唯一性验证
+    var response = $.ajax({
+        url: uniqueUrl,
+        type: "GET",
+        data: data,
+        async: false
+    }).responseText;
+    console.log(response);
+    // 根据后端接口的返回结果判断验证是否通过
+    return response === "true";
+}, "该字段的值已存在，请重新输入");
+    $('#myForm').validate({
+        rules: {$rules|raw},
+        onfocusout: function(element) {
+      var $element = $(element);
+      if ($element.rules().unique) {
+        $element.valid();
+      }
+    },
+    onkeyup: function(element) {
+      clearTimeout(delayTimer); // 清除之前的延迟验证计时器
+      var $element = $(element);
+      if ($element.rules().unique) {
+        delayTimer = setTimeout(function() {
+          $element.valid();
+        }, 2000); // 设置延迟验证的时间间隔，这里设置为500毫秒
+      }
+    }
+    });
+});
+</script>
 </body>
 <!-- Bootstrap 4 -->
 <script src="/static/plugins/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

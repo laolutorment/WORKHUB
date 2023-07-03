@@ -950,3 +950,45 @@ function getLinkageListData(string $modelName, $id = '', $idFieldName = 'id', $n
     }
     return $result;
 }
+
+/**
+ * 生成前端验证规则
+ *
+ * @param array $rule 验证规则数组
+ * @return string JSON格式的前端验证规则字符串
+ */
+function generateFrontendRules($rule)
+{
+    $frontendRules = [];
+    foreach ($rule as $field => $rules) {
+        $frontendField = explode('|', $field)[0];
+        $frontendRules[$frontendField] = [];        
+        foreach ($rules as $rule => $message) {
+            switch ($rule) {
+                case 'require':
+                    $frontendRules[$frontendField]['required'] = true;
+                    break;
+                case 'max':
+                    $frontendRules[$frontendField]['maxlength'] = $message;
+                    break;
+                case 'min':
+                    $frontendRules[$frontendField]['minlength'] = $message;
+                    break;
+                case 'unique':
+                        $frontendRules[$frontendField]['unique'] = $message;
+                        break;
+                case 'mobile':
+                    $frontendRules[$frontendField]['mobile'] = true;
+                    break;
+                case 'email':
+                    $frontendRules[$frontendField]['email'] = true;
+                    break;
+                // 添加其他需要转换的规则...
+                default:
+                    // 处理其他规则...
+                    break;
+            }
+        }
+    }
+    return json_encode($frontendRules);
+}
