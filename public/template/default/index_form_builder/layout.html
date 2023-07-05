@@ -65,11 +65,10 @@
         var $list = $("#" + list + "");                                // 这几个初始化全局的百度文档上没说明
         var GUID = WebUploader.Base.guid();                            // 一个GUID
         var model_name = '{$model_name}';                               //设置对应的模型
-        var field_name = field_name;                     
-		 
+        var field_name = field_name;  
         var uploader = WebUploader.create({
 		// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作,并开启允许重复上传
-			duplicate :true,
+			duplicate :false,
             auto: true,                                                // 选完文件后，是否自动上传。
             swf: '/static/plugins/webuploader-0.1.5/uploader.swf',     // 加载swf文件，路径一定要对
             server: '{:url("upload/index")}' + '?upload_type=' + type+'&path='+path+'&modelName='+model_name+'&fieldName='+field_name, // 文件接收服务端//ZTX-004重新设置上传文件目录：“+'&path='+path”
@@ -226,417 +225,399 @@
 <script src="/static/plugins/jquery-validation-1.19.5/dist/localization/messages_zh.js"></script>
 <!-- 强制居中 -->
 <style>  
-/* 设置表单元素居中 */
-.col-12.form_builder > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-/* 设置错误提示信息文字颜色为红色 */
-  .error {
-  color: red;
-}
-}
-  </style>
+    /* 设置表单元素居中 */
+    .col-12.form_builder > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+    }
+      /* 设置错误提示信息文字颜色为红色 */
+    .error {
+        color: red;
+    }
+</style>
 </head>
 <body data-display_mode="1">
 <!--内容开始-->
-<section class="content">
-    {// 额外CSS代码 }
-    {$extra_css|raw|default=''}
-    <div class="container-fluid">
-        <div class="row">
-            {// 额外HTML代码 }
-            {$extra_html_content_top|raw|default=''}
-           
-           
-            <!--数据表开始-->
-            <form id="myForm" name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
-               <!-- 添加来源认证$upload_token -->
-               <input class="hide" id="upload_token" name="upload_token" value="{$upload_token}">
-               <input class="hide" name="userupload_id" value="{$userupload_id}">
-                 <!--顶部提示开始-->
-            {notempty name="page_tips_top"}
-            <div class="row dd_input_group no-gutters" >
-                <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label"> </label>
-                <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4 alert alert-{$tips_type} alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <p>{$page_tips_top|raw}</p>
-                </div>
-            </div>            
-            {/notempty}
-            <!--顶部提示结束-->
-               
-                <!---->
-                {if $form_items}
-                    <!---->
-                    {volist name="form_items" id="form"}
-                    {switch form.type}
-                        {case value="group"}
-                            {// 分组 }
-                            {include file="./template/default/index_form_builder/items/group.html" type='' /}
-                        {/case}
-                        {case text}
-                            {// 单行文本框 }
-                            {include file="./template/default/index_form_builder/items/text.html" type='' /}
-                        {/case}
-                        {case value="textarea"}
-                            {// 多行文本框 }
-                            {include file="./template/default/index_form_builder/items/textarea.html" type='' /}
-                        {/case}
-                        {case value="radio"}
-                            {// 单选 }
-                            {include file="./template/default/index_form_builder/items/radio.html" type='' /}
-                        {/case}
-                        {case value="checkbox"}
-                            {// 多选 }
-                            {include file="./template/default/index_form_builder/items/checkbox.html" type='' /}
-                        {/case}
-                        {case value="date"}
-                            {// 日期 }
-                            {include file="./template/default/index_form_builder/items/date.html" type='' /}
-                        {/case}
-                        {case value="time"}
-                            {// 时间 }
-                            {include file="./template/default/index_form_builder/items/time.html" type='' /}
-                        {/case}
-                        {case value="datetime"}
-                            {// 日期时间 }
-                            {include file="./template/default/index_form_builder/items/datetime.html" type='' /}
-                        {/case}
-                        {case value="daterange"}
-                            {// 日期范围 }
-                            {include file="./template/default/index_form_builder/items/daterange.html" type='' /}
-                        {/case}
-                        {case value="tags"}
-                            {// 标签 }
-                            {include file="./template/default/index_form_builder/items/tags.html" type='' /}
-                        {/case}
-                        {case value="number"}
-                            {// 数字 }
-                            {include file="./template/default/index_form_builder/items/number.html" type='' /}
-                        {/case}
-                        {case value="password"}
-                            {// 密码 }
-                            {include file="./template/default/index_form_builder/items/password.html" type='' /}
-                        {/case}
-                        {case value="select"}
-                            {// 下拉菜单 }
-                            {include file="./template/default/index_form_builder/items/select.html" type='' /}
-                        {/case}
-                        {case value="select2"}
-                            {// 下拉菜单2 }
-                            {include file="./template/default/index_form_builder/items/select2.html" type='' /}
-                        {/case}
-                        {case value="image"}
-                            {// 单图片 }
-                            {include file="./template/default/index_form_builder/items/image.html" type='' /}
-                        {/case}
-                        {case value="images"}
-                            {// 多图片 }
-                            {include file="./template/default/index_form_builder/items/images.html" type='' /}
-                        {/case}
-                        {case value="file"}
-                            {// 单文件 }
-                            {include file="./template/default/index_form_builder/items/file.html" type='' /}
-                        {/case}
-                        {case value="files"}
-                            {// 多文件 }
-                            {include file="./template/default/index_form_builder/items/files.html" type='' /}
-                        {/case}
-                        {case value="editor"}
-                            {// 编辑器 }
-                            {include file="./template/default/index_form_builder/items/editor.html" type='' /}
-                        {/case}
-                        {case value="button"}
-                            {// 按钮 }
-                            {include file="./template/default/index_form_builder/items/button.html" type='' /}
-                        {/case}
-                        {case value="hidden"}
-                            {// 隐藏域 }
-                            {include file="./template/default/index_form_builder/items/hidden.html" type='' /}
-                        {/case}
-                        {case value="html"}
-                            {// 自定义html }
-                            {include file="./template/default/index_form_builder/items/html.html" type='' /}
-                        {/case}
-                        {case value="color"}
-                            {// 取色器 }
-                            {include file="./template/default/index_form_builder/items/color.html" type='' /}
-                        {/case}
-                        {case value="code"}
-                            {// 代码编辑器 }
-                            {include file="./template/default/index_form_builder/items/code.html" type='' /}
-                        {/case}
-                        {case value="linkage"}
-                            {// 多级联动 }
-                            {include file="./template/default/index_form_builder/items/linkage.html" type='' /}
-                        {/case}
+    <section class="content">
+        {// 额外CSS代码 }
+        {$extra_css|raw|default=''}
+        <div class="container-fluid">
+            <div class="row">
+                {// 额外HTML代码 }
+                {$extra_html_content_top|raw|default=''}
+            
+            
+                <!--数据表开始-->
+                <form id="myForm" name="form-builder" class="col-12 form_builder" method="{$form_method}" action="{$form_url}"  {$submit_confirm ?= 'submit_confirm'} >
+                    <!-- 添加来源认证$upload_token -->
+                    <input class="hide" id="upload_token" name="upload_token" value="{$upload_token}">
+                    <input class="hide" name="userupload_id" value="{$userupload_id}">
+                    <!--顶部提示开始-->
+                    {notempty name="page_tips_top"}
+                    <div class="row dd_input_group no-gutters" >
+                        <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label"> </label>
+                        <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4 alert alert-{$tips_type} alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <p>{$page_tips_top|raw}</p>
+                        </div>
+                    </div>            
+                    {/notempty}
+                    <!--顶部提示结束-->
+                        {if $form_items}                        
+                            {volist name="form_items" id="form"}
+                            {switch form.type}
+                                {case value="group"}
+                                    {// 分组 }
+                                    {include file="./template/default/index_form_builder/items/group.html" type='' /}
+                                {/case}
+                                {case text}
+                                    {// 单行文本框 }
+                                    {include file="./template/default/index_form_builder/items/text.html" type='' /}
+                                {/case}
+                                {case value="textarea"}
+                                    {// 多行文本框 }
+                                    {include file="./template/default/index_form_builder/items/textarea.html" type='' /}
+                                {/case}
+                                {case value="radio"}
+                                    {// 单选 }
+                                    {include file="./template/default/index_form_builder/items/radio.html" type='' /}
+                                {/case}
+                                {case value="checkbox"}
+                                    {// 多选 }
+                                    {include file="./template/default/index_form_builder/items/checkbox.html" type='' /}
+                                {/case}
+                                {case value="date"}
+                                    {// 日期 }
+                                    {include file="./template/default/index_form_builder/items/date.html" type='' /}
+                                {/case}
+                                {case value="time"}
+                                    {// 时间 }
+                                    {include file="./template/default/index_form_builder/items/time.html" type='' /}
+                                {/case}
+                                {case value="datetime"}
+                                    {// 日期时间 }
+                                    {include file="./template/default/index_form_builder/items/datetime.html" type='' /}
+                                {/case}
+                                {case value="daterange"}
+                                    {// 日期范围 }
+                                    {include file="./template/default/index_form_builder/items/daterange.html" type='' /}
+                                {/case}
+                                {case value="tags"}
+                                    {// 标签 }
+                                    {include file="./template/default/index_form_builder/items/tags.html" type='' /}
+                                {/case}
+                                {case value="number"}
+                                    {// 数字 }
+                                    {include file="./template/default/index_form_builder/items/number.html" type='' /}
+                                {/case}
+                                {case value="password"}
+                                    {// 密码 }
+                                    {include file="./template/default/index_form_builder/items/password.html" type='' /}
+                                {/case}
+                                {case value="select"}
+                                    {// 下拉菜单 }
+                                    {include file="./template/default/index_form_builder/items/select.html" type='' /}
+                                {/case}
+                                {case value="select2"}
+                                    {// 下拉菜单2 }
+                                    {include file="./template/default/index_form_builder/items/select2.html" type='' /}
+                                {/case}
+                                {case value="image"}
+                                    {// 单图片 }
+                                    {include file="./template/default/index_form_builder/items/image.html" type='' /}
+                                {/case}
+                                {case value="images"}
+                                    {// 多图片 }
+                                    {include file="./template/default/index_form_builder/items/images.html" type='' /}
+                                {/case}
+                                {case value="file"}
+                                    {// 单文件 }
+                                    {include file="./template/default/index_form_builder/items/file.html" type='' /}
+                                {/case}
+                                {case value="files"}
+                                    {// 多文件 }
+                                    {include file="./template/default/index_form_builder/items/files.html" type='' /}
+                                {/case}
+                                {case value="editor"}
+                                    {// 编辑器 }
+                                    {include file="./template/default/index_form_builder/items/editor.html" type='' /}
+                                {/case}
+                                {case value="button"}
+                                    {// 按钮 }
+                                    {include file="./template/default/index_form_builder/items/button.html" type='' /}
+                                {/case}
+                                {case value="hidden"}
+                                    {// 隐藏域 }
+                                    {include file="./template/default/index_form_builder/items/hidden.html" type='' /}
+                                {/case}
+                                {case value="html"}
+                                    {// 自定义html }
+                                    {include file="./template/default/index_form_builder/items/html.html" type='' /}
+                                {/case}
+                                {case value="color"}
+                                    {// 取色器 }
+                                    {include file="./template/default/index_form_builder/items/color.html" type='' /}
+                                {/case}
+                                {case value="code"}
+                                    {// 代码编辑器 }
+                                    {include file="./template/default/index_form_builder/items/code.html" type='' /}
+                                {/case}
+                                {case value="linkage"}
+                                    {// 多级联动 }
+                                    {include file="./template/default/index_form_builder/items/linkage.html" type='' /}
+                                {/case}
 
-                        {default /}
+                                {default /}
 
-                    {/switch}
-                    {/volist}
-                    <!---->
-                    <!-- 验证码 -->
-                    {if $system.message_code}
-                    <div class="row dd_input_group no-gutters " id="div_message_code">
-                        <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label is-required" for="message_code">验证码</label>
-                        <div class="clearfix"></div>
-                        <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
-                         <input class="form-control" type="text" id="message_code" name="message_code" value="" placeholder="请输入验证码" autocomplete="off">
-                         <img src="{:url('index/captcha')}" title="点击切换验证码">
-                          </div>
-                       
-                    </div>
-                    <script>
-                        //刷新验证码操作
-                        $("#div_message_code img").click(function(){
-                            $(this).attr("src",$(this).attr("src")+'?'+Math.random());
-                        })
-                    </script>
+                            {/switch}
+                            {/volist}
+                            <!---->
+                            <!-- 验证码 -->
+                            {if $system.message_code}
+                            <div class="row dd_input_group no-gutters " id="div_message_code">
+                                <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label is-required" for="message_code">验证码</label>
+                                <div class="clearfix"></div>
+                                <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4">
+                                <input class="form-control" type="text" id="message_code" name="message_code" value="" placeholder="请输入验证码" autocomplete="off">
+                                <img src="{:url('index/captcha')}" title="点击切换验证码">
+                                </div>
+                            
+                            </div>
+                            <script>
+                                //刷新验证码操作
+                                $("#div_message_code img").click(function(){
+                                    $(this).attr("src",$(this).attr("src")+'?'+Math.random());
+                                })
+                            </script>
+                            {/if}
+                            <!--底部提示-->
+                            {notempty name="page_tips_bottom"}
+                            <div class="row dd_input_group no-gutters" >
+                                <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label"> </label>
+                                <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4 alert alert-{$tips_type} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <p>{$page_tips_bottom|raw}</p>
+                                </div>
+                            </div>            
+                            {/notempty}
+                            <div class="row dd_input_group form-builder-submit no-gutters">                            
+                                {php}if(isset($btn_hide) && !in_array('submit', $btn_hide)):{/php}
+                                <button type="submit" class="btn btn-flat btn-primary ">{$btn_title['submit']|default='提 交'}</button>
+                                {php}endif;{/php}
+                                {php}if(isset($btn_hide) && !in_array('back', $btn_hide)):{/php}
+                                <button type="button" class="btn btn-flat btn-default " onclick="javascript :history.back(-1)">{$btn_title['back']|default='返 回'}</button>
+                                {php}endif;{/php}
+                                {// 额外按钮}
+                                {foreach $btn_extra as $key=>$vo }
+                                {$vo|raw|default=''}
+                                {/foreach}                        
+                            </div>
+                            <!-- /.box -->
+                                {else /}
+                                    <div class="box box-body">
+                                        {$empty_tips|raw}
+                                    </div>
+                                    <!-- /.box -->
+                                {/if}
+                </form>
+                
+                {// 额外HTML代码 }
+                {$extra_html_content_bottom|raw|default=''}
+                {// 额外JS代码 }
+                {$extra_js|raw|default=''}
+                
+                <script>  
+                 // ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
+                 $(document).on('click', '.remove_images', function () {                      
+                        var remove = $(this).parent().parent().parent();
+                        {if $isLoggedIn} 
+                        //用户登录情况下可以删除原上传文件
+                        var file = $(this).parent().parent().parent().find(":first-child").find(":first-child").val();
+                        var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
+                        layer.confirm("是否删除原文件",{
+                        icon: 3,
+                        title: "系统提示",
+                        btn: ['是', '否']
+                        }, function (index) {
+                        //第一个按钮运行的函数，传递index（当前层）参数
+                            // 删除服务器上的文件
+                            if (file=='') {
+                                    remove.remove();
+                                }
+                                else{
+                                $.ajax({
+                                        type: "POST",
+                                        url: "/index/Index/deleteFrontendFile",
+                                        data:{file:file,file_type:file_type},
+                                        dataType: "json",
+                                        success: function(data){
+                                                switch (data) {
+                                                case ("1"):
+                                                console.log('删除成功');
+                                                remove.remove();
+                                                    break;
+                                                case ("0"):
+                                                    console.log('文件不存在');
+                                                    remove.remove();
+                                                    break;
+                                                case ("2"):
+                                                console.log('删除失败');
+                                                    break;
+                                                    default:
+                                                    console.log('删除失败,原因不明');
+                                                    break;
+                                                    }}
+                                        });
+                                }
+                        layer.close(index);
+                        }, function(){
+                        //第二个按钮运行的函数
+                            // 仅删除标签
+                            remove.remove();
+                        });// WORKHUB：增加从服务器上删除对应文件的操作
+                    // ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
+                    {else}
+                    remove.remove();
                     {/if}
-                    <!--底部提示-->
-            {notempty name="page_tips_bottom"}
-            <div class="row dd_input_group no-gutters" >
-                <label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label"> </label>
-                <div class="col-9 col-sm-9 col-md-9 col-lg-6 col-xl-4 alert alert-{$tips_type} alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <p>{$page_tips_bottom|raw}</p>
-                </div>
-            </div>            
-            {/notempty}
-                    <div class="row dd_input_group form-builder-submit no-gutters">
-                      
-                            {php}if(isset($btn_hide) && !in_array('submit', $btn_hide)):{/php}
-                            <button type="submit" class="btn btn-flat btn-primary ">{$btn_title['submit']|default='提 交'}</button>
-                            {php}endif;{/php}
-                            {php}if(isset($btn_hide) && !in_array('back', $btn_hide)):{/php}
-                            <button type="button" class="btn btn-flat btn-default " onclick="javascript :history.back(-1)">{$btn_title['back']|default='返 回'}</button>
-                            {php}endif;{/php}
-                            {// 额外按钮}
-                            {foreach $btn_extra as $key=>$vo }
-                            {$vo|raw|default=''}
-                            {/foreach}
-                     
-                    </div>
-                    <!-- /.box -->
-                {else /}
-                    <div class="box box-body">
-                        {$empty_tips|raw}
-                    </div>
-                    <!-- /.box -->
-                {/if}
-            </form>
-            
-            {// 额外HTML代码 }
-            {$extra_html_content_bottom|raw|default=''}
-            {// 额外JS代码 }
-            {$extra_js|raw|default=''}
-			
-	<script>
-	
-	
-	// ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
-	$(document).on('click', '.remove_images', function () {
-    var file = $(this).parent().parent().parent().find(":first-child").find(":first-child").val();
-    var file_type = $(this).parent().parent().parent().parent().parent().find(":first-child").val();
-    var remove = $(this).parent().parent().parent();
-	layer.confirm("是否删除原文件",{
-	icon: 3,
-    title: "系统提示",
-    btn: ['是', '否']
-	}, function (index) {
-	//第一个按钮运行的函数，传递index（当前层）参数
-		// 删除服务器上的文件
-        console.log(file);
-        console.log(file_type);
-		if (file=='') {
-           
-				remove.remove();
-            }
-			else{
-			 $.ajax({
-                    type: "POST",
-                    url: "/admin/Index/file_del",
-                    data:{file:file,file_type:file_type},
-                    dataType: "json",
-                    success: function(data){
-					 switch (data) {
-                    case ("1"):
-                       console.log('删除成功');
-					   remove.remove();
-                        break;
-                    case ("0"):
-                        console.log('文件不存在');
-						remove.remove();
-                        break;
-                    case ("2"):
-                      console.log('删除失败');
-                        break;
-						default:
-						console.log('删除失败,原因不明');
-                        break;
-								 }}
-                    });
-			}
-	layer.close(index);
-	}, function(){
-	//第二个按钮运行的函数
-		// 仅删除标签
-		remove.remove();
-	});// WORKHUB：增加从服务器上删除对应文件的操作
-  // ZTX-002WORKHUB：增加从服务器上删除对应文件的操作	
-})
+                    })  
+                {if $isLoggedIn} 
+                // 在已登录的情况下可在站内选择、删除自己已经上传过的图片          
+                    $( function() {    
+                       
+                    //ZTX-005从站内选择图片
+                    if($( '[name="site_img_choose"]' ).length >0 ){
+                        $( '[name="site_img_choose"]' ).autocomplete({	
+                        source:function(request, response){
+                        $.ajax({
+                                type: "POST",
+                                url: "/admin/Index/autocomplete_file",
+                                data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%img%']]},
+                                dataType: "json",
+                                success: function(data){					
+                                    response(data);
+                                }
+                            });
+                        },
+                        select: function (event, ui) {    // 下拉框选中事件            
+                            var images = '' +
+                                        '<div class="row no-gutters">' +
+                                        '   <div class="col-4 col-sm-4"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
+                                        '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
+                                        '   <div class="col-4 col-sm-3">' +
+                                        '       <div class="btn-group">' +
+                                        '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
+                                        '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
+                                        '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
+                                        '       </div>' +
+                                        '   </div>' +
+                                        '   <div class="col-4 col-sm-2"><a href="'+ ui.item.link +'" target="_blank"> <img class="images_preview_info" src="'+ ui.item.link +'"  ></a></div>'+
+                                                            
+                                        '</div>';
+                                    var images_list = $('#more_images_images').html();
+                                    $('#more_images_images').html(images + images_list);
+                                return false;
+                            }
+                        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                                        return $( "<li>" )
+                                            .append( '<div><img  width="100" height="100" src="'+item.link+'"><a>' + item.name + '</a></div>')
+                                            .appendTo( ul );
+                                            };}
+                                            
+                                            //站内文件选择
+                        if($( '[name="site_file_choose"]' ).length >0 ){
+                        $( '[name="site_file_choose"]' ).autocomplete({
+                        
+                        source:function(request, response){
+                        $.ajax({
+                                type: "POST",
+                                url: "/admin/Index/autocomplete_file",
+                                data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%file%']]},
+                                dataType: "json",
+                                success: function(data){                                
+                                    response(data);
+                                }
+                            });
+                        },
+                        select: function (event, ui) {    // 下拉框选中事件                                
+                            var images = '' +
+                                        '<div class="row no-gutters">' +
+                                        '   <div class="col-4 col-sm-6"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
+                                        '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
+                                        '   <div class="col-4 col-sm-3">' +
+                                        '       <div class="btn-group">' +
+                                        '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
+                                        '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
+                                        '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
+                                        '       </div>' +
+                                        '   </div>' +
+                                        '</div>';
+                                    var images_list = $('#more_images_files_test').html();
 
-// ZTX-选择图标
-$( function() {
-
-    
-//ZTX-005从站内选择图片
-if($( '[name="site_img_choose"]' ).length >0 ){
-
-
-    $( '[name="site_img_choose"]' ).autocomplete({
-	
-      source:function(request, response){
-	   $.ajax({
-                    type: "POST",
-                    url: "/admin/Index/autocomplete_file",
-                    data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%img%']]},
-                    dataType: "json",
-                    success: function(data){					
-                        response(data);
-                    }
-                });
-	  },
-	  select: function (event, ui) {    // 下拉框选中事件            
-		 var images = '' +
-                    '<div class="row no-gutters">' +
-                    '   <div class="col-4 col-sm-4"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
-                    '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
-                    '   <div class="col-4 col-sm-3">' +
-                    '       <div class="btn-group">' +
-                    '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
-                    '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
-                    '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
-                    '       </div>' +
-                    '   </div>' +
-					'   <div class="col-4 col-sm-2"><a href="'+ ui.item.link +'" target="_blank"> <img class="images_preview_info" src="'+ ui.item.link +'"  ></a></div>'+
-										
-                    '</div>';
-                var images_list = $('#more_images_images').html();
-                $('#more_images_images').html(images + images_list);
-            return false;
-        }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-                    return $( "<li>" )
-                        .append( '<div><img  width="100" height="100" src="'+item.link+'"><a>' + item.name + '</a></div>')
-                        .appendTo( ul );
-						};}
-						
-						//站内文件选择
-	if($( '[name="site_file_choose"]' ).length >0 ){
-	 $( '[name="site_file_choose"]' ).autocomplete({
-	
-      source:function(request, response){
-	   $.ajax({
-                    type: "POST",
-                    url: "/admin/Index/autocomplete_file",
-                    data:{where:[['link','like','%'+request.term+'%'],['file_type','like','%file%']]},
-                    dataType: "json",
-                    success: function(data){
-					
-                        response(data);
-                    }
-                });
-	  },
-	  select: function (event, ui) {    // 下拉框选中事件
-            
-		 var images = '' +
-                    '<div class="row no-gutters">' +
-                    '   <div class="col-4 col-sm-6"><input type="text" name="images[]" value="' + ui.item.link + '" class="form-control"/></div>' +
-                    '   <div class="col-3 col-sm-3"><input class="form-control input-sm" type="text" name="images_title[]" value="' + ui.item.name + '" ></div>' +
-                    '   <div class="col-4 col-sm-3">' +
-                    '       <div class="btn-group">' +
-                    '           <button type="button" class="btn btn-default btn-sm move_up_images"><i class="fa fa-chevron-up"></i></button>' +
-                    '           <button type="button" class="btn btn-default btn-sm move_down_images"><i class="fa fa-chevron-down"></i></button>' +
-                    '           <button type="button" class="btn btn-default btn-sm remove_images"><i class="fa fa-times"></i></button>' +
-                    '       </div>' +
-                    '   </div>' +
-					
-					
-					
-                    '</div>';
-                var images_list = $('#more_images_files_test').html();
-
-                $('#more_images_files_test').html(images + images_list);
-            return false;
-        }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-                    return $( "<li>" )
-                        .append( '<div>' + item.name + '</a></div>')
-                        .appendTo( ul );
-						}
-  } });
-  
-  
-  </script>
-			
-			
+                                    $('#more_images_files_test').html(images + images_list);
+                                return false;
+                            }
+                        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                                        return $( "<li>" )
+                                            .append( '<div>' + item.name + '</a></div>')
+                                            .appendTo( ul );
+                                            }
+                    } });
+                    {/if}   
+                </script>                           
+            </div>
         </div>
-    </div>
-</div>
 
-<!--内容结束-->
-</section>
+    <!--内容结束-->
+    </section>
 <script>
-   
-$(document).ready(function() {
-    var delayTimer; // 声明一个延迟验证的计时器
-     // 添加手机号验证规则
-    $.validator.addMethod("mobile", function(value, element) {
-        var phoneRegex = /^1[3-9]\d{9}$/;
-        return this.optional(element) || phoneRegex.test(value);
-    }, "请输入有效的手机号码");
-    // 添加唯一性验证规则
-    $.validator.addMethod("unique", function(value, element, param) {
-    var uniqueField = $(element);
-    var uniqueUrl = "/index/Index/uniqueCheck.html"; // 替换成实际的唯一性验证接口地址
-    // 构建请求参数，将字段名称和值作为参数传递给后端验证接口
-    var data = {};
-    data["field"] = element.name; // 字段名称
-    data["value"] = value; // 字段值
-    data["table"] = param; // 数据库表名
-    // 发送异步请求进行唯一性验证
-    var response = $.ajax({
-        url: uniqueUrl,
-        type: "GET",
-        data: data,
-        async: false
-    }).responseText;
-    console.log(response);
-    // 根据后端接口的返回结果判断验证是否通过
-    return response === "true";
-}, "该字段的值已存在，请重新输入");
-    $('#myForm').validate({
-        rules: {$rules|raw},
-        onfocusout: function(element) {
-      var $element = $(element);
-      if ($element.rules().unique) {
-        $element.valid();
-      }
-    },
-    onkeyup: function(element) {
-      clearTimeout(delayTimer); // 清除之前的延迟验证计时器
-      var $element = $(element);
-      if ($element.rules().unique) {
-        delayTimer = setTimeout(function() {
-          $element.valid();
-        }, 2000); // 设置延迟验证的时间间隔，这里设置为500毫秒
-      }
-    }
+   //前端验证规则设置
+    $(document).ready(function() {
+        var delayTimer; // 声明一个延迟验证的计时器
+        // 添加手机号验证规则
+        $.validator.addMethod("mobile", function(value, element) {
+            var phoneRegex = /^1[3-9]\d{9}$/;
+            return this.optional(element) || phoneRegex.test(value);
+        }, "请输入有效的手机号码");
+        // 添加唯一性验证规则
+        $.validator.addMethod("unique", function(value, element, param) {
+        var uniqueField = $(element);
+        var uniqueUrl = "/index/Index/uniqueCheck.html"; // 替换成实际的唯一性验证接口地址
+        // 构建请求参数，将字段名称和值作为参数传递给后端验证接口
+        var data = {};
+        data["field"] = element.name; // 字段名称
+        data["value"] = value; // 字段值
+        data["table"] = param; // 数据库表名
+        // 发送异步请求进行唯一性验证
+        var response = $.ajax({
+            url: uniqueUrl,
+            type: "GET",
+            data: data,
+            async: false
+        }).responseText;
+        console.log(response);
+        // 根据后端接口的返回结果判断验证是否通过
+        return response === "true";
+    }, "该字段的值已存在，请重新输入");
+        $('#myForm').validate({
+            rules: {$rules|raw},
+            onfocusout: function(element) {
+        var $element = $(element);
+        if ($element.rules().unique) {
+            $element.valid();
+        }
+        },
+        onkeyup: function(element) {
+        clearTimeout(delayTimer); // 清除之前的延迟验证计时器
+        var $element = $(element);
+        if ($element.rules().unique) {
+            delayTimer = setTimeout(function() {
+            $element.valid();
+            }, 2000); // 设置延迟验证的时间间隔，这里设置为500毫秒
+        }
+        }
+        });
     });
-});
 </script>
 </body>
 <!-- Bootstrap 4 -->

@@ -142,5 +142,37 @@ class Index extends Base
             return 'Error'; // 如果请求参数不正确，返回错误信息
         }
     }
+    public function deleteFrontendFile(string $file = '', string $file_type = '')
+     {    
+        if (file_exists('.'.$file)) {
+            if ($file_type == 'image') {
+                $file_info = pathinfo($file);
+                $small_file = '/uploads/index/thumb/' . 'small_' . $file_info['basename'];    
+                $model = 'app\common\model\FileManagement'; //ZTX-005
+                //ZTX-005删除文件管理模块数据  
+                $result_small = $model::where('link', '=', $small_file)->find();
+                if ($result_small) {
+                    $result_small->user = ''; // 修改属性值
+                    $result_small = $result_small->save(); // 保存修改
+                   
+                } else {
+                    // 未找到记录的处理逻辑
+                    $result_small = true;
+                }         
+            }
+            $result = $model::where('link', '=', $file)->find()->save(['user'=>'']); 
+            //删除文件
+            if ($result&&$result_small) {
+                $code = '1'; //删除成功
+             
+            } else {
+                $code = '2'; //删除失败
+            }
+        } else {
+            $code = '0'; //文件不存在
+        }
+        return $code;
+
+     }
 
 }

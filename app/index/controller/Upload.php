@@ -82,9 +82,7 @@ class Upload extends Base
     {
         $token = isset($_POST['token']) ? $_POST['token'] : '';       
         if (empty($token) || $token !== Session::get('upload_token')) {
-             // 验证失败 输出错误信息
-            Log::info($token);
-            Log::info(Session::get('upload_token'));
+             // 验证失败 输出错误信息        
             $error_msg =  [
                 'code' => 0,
                 'msg'  => '错误:非法上传' ,

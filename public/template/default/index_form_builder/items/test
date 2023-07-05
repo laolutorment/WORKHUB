@@ -1,0 +1,1 @@
+<label class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-1 dd_input_l col-form-label {notempty name="form[type].required"}is-required{/notempty}" for="{$form[type].name}">{$form[type].title|htmlspecialchars}</label>

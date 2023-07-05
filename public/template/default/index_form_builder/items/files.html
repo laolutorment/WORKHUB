@@ -42,7 +42,9 @@
 		<!-- ZTX-005  by WORKHUB-->
 		<div class="row no-gutters">
 		 <div class="col-4 col-sm-12">
+            {if $isLoggedIn}
 			<input class="form-control" type="text" id="file" name="site_file_choose" value="" placeholder="从站内选择文件，输入搜索关键词" >
+            {/if}
             {notempty name="form[type].tips"}
             <small class="text-muted">
                 <i class="fa fa-info-circle"></i> {$form[type].tips|raw}

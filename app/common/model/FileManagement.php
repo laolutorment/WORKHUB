@@ -85,4 +85,10 @@ class FileManagement extends Base
 		return $code;
 	}
 
+// ZTX-增加模块的表格模板关联设置 
+ public function users()
+ { 
+ return $this->belongsTo('Users', 'user');  
+ }
+ // ZTX-增加模块的表格模板关联设置
 }
